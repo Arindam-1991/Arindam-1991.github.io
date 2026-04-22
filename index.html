@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arindam Sikdar — Computer Vision Researcher</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --surface: #f5f6f8;
+    --surface2: #eef0f4;
+    --border: #d0d7de;
+    --border-light: #e8ebf0;
+    --navy: #1a2744;
+    --blue: #2563a8;
+    --blue-dim: rgba(37,99,168,0.10);
+    --teal: #1d7a8a;
+    --muted: #6e7c8e;
+    --text: #24303f;
+    --green: #1a7a45;
+    --green-dim: rgba(26,122,69,0.10);
+    --red-dim: rgba(180,80,50,0.09);
+    --red: #b45032;
+    --radius: 8px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 3rem; height: 56px;
+    background: var(--navy);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem; font-weight: 500;
+    color: #fff; letter-spacing: 0.04em;
+  }
+
+  .nav-logo span { color: #7eb8e8; }
+
+  .nav-links { display: flex; gap: 0; list-style: none; height: 100%; }
+
+  .nav-links a {
+    display: flex; align-items: center;
+    height: 56px; padding: 0 1.1rem;
+    font-size: 0.82rem; font-weight: 500;
+    color: rgba(255,255,255,0.72);
+    text-decoration: none; transition: color 0.2s, background 0.2s;
+  }
+
+  .nav-links a:hover { color: #fff; background: rgba(255,255,255,0.08); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 7rem 3rem 4rem;
+    background: linear-gradient(135deg, #eef3fb 0%, #e5edf8 40%, #f0f4fb 100%);
+    position: relative; overflow: hidden;
+  }
+
+  #hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(37,99,168,0.055) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(37,99,168,0.055) 1px, transparent 1px);
+    background-size: 40px 40px;
+    mask-image: radial-gradient(ellipse 80% 80% at 25% 50%, black 20%, transparent 75%);
+  }
+
+  #hero::after {
+    content: '';
+    position: absolute; right: -100px; top: 50%;
+    width: 520px; height: 520px; border-radius: 50%;
+    border: 70px solid rgba(37,99,168,0.055);
+    transform: translateY(-50%); pointer-events: none;
+  }
+
+  .hero-left { position: relative; z-index: 1; max-width: 580px; }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--blue); background: var(--blue-dim);
+    border: 1px solid rgba(37,99,168,0.22);
+    padding: 0.35rem 0.9rem; border-radius: 20px; margin-bottom: 1.8rem;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .hero-badge::before { content: '●'; font-size: 0.45rem; color: var(--teal); }
+
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 5.5vw, 4.8rem);
+    font-weight: 300; line-height: 1.05;
+    color: var(--navy); margin-bottom: 0.5rem;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+
+  .hero-name em { font-style: italic; color: var(--blue); }
+
+  .hero-title {
+    font-family: 'DM Mono', monospace; font-size: 0.82rem;
+    color: var(--muted); letter-spacing: 0.04em; margin-bottom: 2rem;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  .hero-title span { color: var(--teal); }
+
+  .hero-intro {
+    font-size: 0.97rem; color: var(--text); line-height: 1.85;
+    max-width: 500px; margin-bottom: 2.5rem;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+
+  .hero-links {
+    display: flex; gap: 0.8rem; flex-wrap: nowrap;
+    animation: fadeUp 0.6s 0.4s ease both;
+  }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    padding: 0.5rem 1.1rem; border-radius: var(--radius);
+    font-size: 0.76rem; font-weight: 500; text-decoration: none;
+    white-space: nowrap; transition: all 0.18s; cursor: pointer; border: none;
+  }
+  .btn svg { flex-shrink: 0; }
+
+  .btn-primary {
+    background: var(--blue); color: #fff;
+    box-shadow: 0 2px 8px rgba(37,99,168,0.22);
+  }
+  .btn-primary:hover { background: #1a4f8a; transform: translateY(-1px); box-shadow: 0 4px 14px rgba(37,99,168,0.28); }
+
+  .btn-outline {
+    background: #fff; color: var(--navy);
+    border: 1px solid var(--border);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .btn-outline:hover { border-color: var(--blue); color: var(--blue); transform: translateY(-1px); }
+
+  /* ── HERO RIGHT STATS ── */
+  .hero-right {
+    position: relative; z-index: 1;
+    display: flex; flex-direction: column; align-items: flex-end; gap: 0.85rem;
+  }
+
+  .stat-card {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.1rem 1.6rem;
+    min-width: 210px; text-align: right;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    animation: fadeLeft 0.6s ease both;
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+
+  .stat-card:hover { border-color: var(--blue); transform: translateX(-4px); box-shadow: 0 4px 16px rgba(37,99,168,0.12); }
+  .stat-card:nth-child(1) { animation-delay: 0.4s; }
+  .stat-card:nth-child(2) { animation-delay: 0.5s; }
+  .stat-card:nth-child(3) { animation-delay: 0.6s; }
+  .stat-card:nth-child(4) { animation-delay: 0.7s; }
+
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.4rem; font-weight: 400; color: var(--blue); line-height: 1;
+  }
+
+  .stat-label {
+    font-family: 'DM Mono', monospace; font-size: 0.63rem;
+    text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-top: 0.2rem;
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 5rem 3rem; position: relative; }
+
+  section:nth-child(even) {
+    background: var(--surface);
+    border-top: 1px solid var(--border-light);
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .section-header {
+    display: flex; align-items: baseline; gap: 1rem; margin-bottom: 3rem;
+  }
+
+  .section-num {
+    font-family: 'DM Mono', monospace; font-size: 0.68rem;
+    color: var(--blue); letter-spacing: 0.1em;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 400; color: var(--navy);
+  }
+
+  .section-line {
+    flex: 1; height: 2px;
+    background: linear-gradient(to right, var(--border), transparent);
+    margin-left: 1rem; max-width: 200px;
+  }
+
+  /* ── RESEARCH CARDS ── */
+  .research-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1.2rem; max-width: 1000px;
+  }
+
+  .research-card {
+    background: #fff; border: 1px solid var(--border);
+    border-top: 3px solid var(--blue); border-radius: var(--radius);
+    padding: 1.4rem 1.5rem;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .research-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(37,99,168,0.10);
+  }
+
+  .research-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem; font-weight: 600; color: var(--navy); margin-bottom: 0.5rem;
+  }
+
+  .research-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
+
+  /* ── TIMELINE ── */
+  .timeline { max-width: 900px; }
+
+  .tl-item {
+    display: grid; grid-template-columns: 140px 1fr;
+    gap: 2rem; position: relative; padding-bottom: 2.5rem;
+  }
+
+  .tl-item:not(:last-child)::after {
+    content: ''; position: absolute;
+    left: 140px; top: 1.5rem; bottom: 0;
+    width: 1px; background: var(--border); margin-left: 1rem;
+  }
+
+  .tl-year {
+    font-family: 'DM Mono', monospace; font-size: 0.7rem;
+    color: var(--muted); letter-spacing: 0.06em;
+    padding-top: 0.25rem; text-align: right; line-height: 1.5;
+  }
+
+  .tl-content {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.4rem 1.5rem;
+    margin-left: 1.5rem; position: relative;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .tl-content::before {
+    content: ''; position: absolute;
+    left: -1.8rem; top: 1.25rem;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--blue); border: 2px solid var(--bg);
+    box-shadow: 0 0 0 2px var(--blue);
+  }
+
+  .tl-content:hover { border-color: var(--blue); box-shadow: 0 4px 16px rgba(37,99,168,0.10); }
+
+  .tl-content h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem; font-weight: 600; color: var(--navy); margin-bottom: 0.2rem;
+  }
+
+  .tl-institution {
+    font-family: 'DM Mono', monospace; font-size: 0.7rem;
+    color: var(--teal); letter-spacing: 0.04em; margin-bottom: 0.8rem;
+  }
+
+  .tl-content p { font-size: 0.88rem; color: var(--text); line-height: 1.75; }
+
+  .tl-tag {
+    display: inline-block; margin-top: 0.8rem;
+    font-family: 'DM Mono', monospace; font-size: 0.63rem;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--blue); background: var(--blue-dim);
+    border: 1px solid rgba(37,99,168,0.2);
+    padding: 0.2rem 0.7rem; border-radius: 20px;
+  }
+
+  /* ── PUBLICATIONS ── */
+  .pub-filter { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+
+  .pub-filter-btn {
+    font-family: 'DM Mono', monospace; font-size: 0.7rem;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    padding: 0.4rem 1rem; border-radius: 20px; cursor: pointer;
+    border: 1px solid var(--border); background: #fff;
+    color: var(--muted); transition: all 0.18s;
+  }
+
+  .pub-filter-btn:hover, .pub-filter-btn.active {
+    border-color: var(--blue); color: var(--blue); background: var(--blue-dim);
+  }
+
+  .pub-list { max-width: 960px; display: flex; flex-direction: column; gap: 0.85rem; }
+
+  .pub-item {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.2rem 1.5rem;
+    display: grid; grid-template-columns: auto 1fr auto;
+    gap: 1.1rem; align-items: start;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    transition: border-color 0.18s, transform 0.18s, box-shadow 0.18s;
+  }
+
+  .pub-item:hover {
+    border-color: var(--blue); transform: translateX(4px);
+    box-shadow: 0 3px 12px rgba(37,99,168,0.08);
+  }
+
+  .pub-num {
+    font-family: 'DM Mono', monospace; font-size: 0.68rem;
+    color: var(--blue); padding-top: 0.1rem; min-width: 28px;
+  }
+
+  .pub-title {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.05rem;
+    font-weight: 600; color: var(--navy); line-height: 1.4; margin-bottom: 0.3rem;
+  }
+
+  .pub-authors { font-size: 0.82rem; color: var(--muted); margin-bottom: 0.3rem; }
+  .pub-authors strong { color: var(--text); font-weight: 600; }
+
+  .pub-venue {
+    font-family: 'DM Mono', monospace; font-size: 0.7rem;
+    color: var(--teal); letter-spacing: 0.02em;
+  }
+
+  .pub-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 0.4rem; }
+
+  .pub-badge {
+    font-family: 'DM Mono', monospace; font-size: 0.62rem;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    padding: 0.22rem 0.65rem; border-radius: 20px; white-space: nowrap;
+  }
+
+  .badge-journal    { background: var(--blue-dim); color: var(--blue); border: 1px solid rgba(37,99,168,0.25); }
+  .badge-conference { background: var(--green-dim); color: var(--green); border: 1px solid rgba(26,122,69,0.2); }
+  .badge-book       { background: var(--red-dim); color: var(--red); border: 1px solid rgba(180,80,50,0.2); }
+
+  .pub-if { font-family: 'DM Mono', monospace; font-size: 0.64rem; color: var(--muted); text-align: right; }
+
+  /* ── SKILLS ── */
+  .skills-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.1rem; max-width: 1000px;
+  }
+
+  .skill-group {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.3rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    transition: border-color 0.18s, box-shadow 0.18s;
+  }
+
+  .skill-group:hover { border-color: var(--blue); box-shadow: 0 3px 12px rgba(37,99,168,0.08); }
+
+  .skill-group h3 {
+    font-family: 'DM Mono', monospace; font-size: 0.67rem;
+    text-transform: uppercase; letter-spacing: 0.12em; color: var(--blue);
+    margin-bottom: 0.85rem; padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+  .skill-tag {
+    font-size: 0.78rem; color: var(--text);
+    background: var(--surface); border: 1px solid var(--border);
+    padding: 0.25rem 0.75rem; border-radius: 4px; transition: all 0.15s;
+  }
+
+  .skill-tag:hover { background: var(--blue-dim); border-color: var(--blue); color: var(--blue); }
+
+  /* ── CONTACT ── */
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1.1rem; max-width: 800px;
+  }
+
+  .contact-item {
+    display: flex; gap: 1rem; align-items: flex-start;
+    background: #fff; border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.2rem;
+    text-decoration: none;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    transition: border-color 0.18s, transform 0.18s, box-shadow 0.18s;
+  }
+
+  .contact-item:hover {
+    border-color: var(--blue); transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(37,99,168,0.10);
+  }
+
+  .contact-icon {
+    width: 36px; height: 36px; border-radius: 8px;
+    background: var(--blue-dim); color: var(--blue);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; flex-shrink: 0; font-weight: 600;
+  }
+
+  .contact-label {
+    font-family: 'DM Mono', monospace; font-size: 0.63rem;
+    text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted);
+  }
+
+  .contact-value { font-size: 0.87rem; color: var(--text); margin-top: 0.15rem; word-break: break-all; }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center; padding: 1.8rem;
+    background: var(--navy);
+    font-family: 'DM Mono', monospace; font-size: 0.68rem;
+    color: rgba(255,255,255,0.45);
+  }
+
+  footer a { color: #7eb8e8; text-decoration: none; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeLeft {
+    from { opacity: 0; transform: translateX(20px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+
+  .reveal {
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--surface); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--blue); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 0 1.2rem; }
+    .nav-links { display: none; }
+    #hero { grid-template-columns: 1fr; padding: 5.5rem 1.5rem 3rem; }
+    .hero-right { display: none; }
+    section { padding: 3.5rem 1.5rem; }
+    .research-grid { grid-template-columns: 1fr; }
+    .tl-item { grid-template-columns: 1fr; }
+    .tl-item::after { display: none; }
+    .tl-content { margin-left: 0; }
+    .tl-content::before { display: none; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .pub-item { grid-template-columns: auto 1fr; }
+    .pub-meta { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">A<span>.</span>Sikdar</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#teaching">Teaching</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-badge">Postdoctoral Research Associate</div>
+    <h1 class="hero-name">Arindam<br><em>Sikdar</em></h1>
+    <div class="hero-title">Postdoctoral Researcher &nbsp;·&nbsp; <span>Computer Vision &amp; AI</span></div>
+    <p class="hero-intro">
+      Researcher with over 10 years of experience in computer vision, deep learning, and visual intelligence systems.
+      EPSRC-funded researcher working on autonomous triage systems and multimodal AI.
+      Author of 15+ peer-reviewed publications across IJCV, IEEE TAI, Neurocomputing, and ICIP.
+    </p>
+    <div class="hero-links">
+      <a href="https://github.com/Arindam-1991" class="btn btn-primary" target="_blank">
+        <svg height="15" width="15" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+        GitHub
+      </a>
+      <a href="https://www.linkedin.com/in/dr-arindam-sikdar-b496bb205" class="btn btn-outline" target="_blank">
+        <svg height="15" width="15" viewBox="0 0 24 24" fill="#0A66C2"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://orcid.org/0000-0002-5697-0060" class="btn btn-outline" target="_blank">
+        <svg height="15" width="15" viewBox="0 0 24 24" fill="#A6CE39"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.016-5.325 5.016h-3.919V7.416zm1.444 1.303v7.435h2.297c3.272 0 3.872-2.466 3.872-3.722 0-2.456-1.516-3.713-3.884-3.713h-2.285z"/></svg>
+        ORCID
+      </a>
+      <a href="https://scholar.google.com/citations?user=8R1eDrIAAAAJ&hl=en" class="btn btn-outline" target="_blank">
+        <svg height="15" width="15" viewBox="0 0 24 24" fill="#4285F4"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 10a8 8 0 0 1 7.162 3.44L24 9.5z"/></svg>
+        Scholar
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="stat-card">
+      <div class="stat-num">15+</div>
+      <div class="stat-label">Peer-reviewed Publications</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">10+</div>
+      <div class="stat-label">Years of Research Experience</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">9.3</div>
+      <div class="stat-label">Highest Impact Factor (IJCV)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">2×</div>
+      <div class="stat-label">EPSRC-funded Postdoc Positions</div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH INTERESTS -->
+<section id="about">
+  <div class="section-header reveal">
+    <span class="section-num">01</span>
+    <h2 class="section-title">Research Interests</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="research-grid">
+    <div class="research-card reveal">
+      <h3>👁 Computer Vision &amp; Pattern Recognition</h3>
+      <p>Developing interpretable, efficient, and scalable visual intelligence systems with emphasis on person re-identification, fine-grained visual recognition, and crowd analysis.</p>
+    </div>
+    <div class="research-card reveal">
+      <h3>🤖 Deep Learning &amp; Multimodal AI</h3>
+      <p>Designing novel deep learning architectures for high-order feature interactions, multimodal fusion, and real-time inference in autonomous and intelligent systems.</p>
+    </div>
+    <div class="research-card reveal">
+      <h3>🚨 Visual Anomaly Detection</h3>
+      <p>Building training-less and adaptive frameworks for anomaly detection in crowd scenes and surveillance environments using lightweight, resource-efficient methods.</p>
+    </div>
+    <div class="research-card reveal">
+      <h3>🏥 Smart Healthcare Applications</h3>
+      <p>Leveraging vision-based sensing for unobtrusive symptom monitoring — including Parkinson's disease assessment and infant pulse rate estimation — to enable remote clinical care.</p>
+    </div>
+    <div class="research-card reveal">
+      <h3>🛸 Autonomous Systems &amp; Robotics</h3>
+      <p>Integrating trustworthy AI principles into drone-based triage systems, UAV-guided navigation, and traffic scene analysis for safety-critical real-world deployments.</p>
+    </div>
+    <div class="research-card reveal">
+      <h3>🔬 Human Activity Recognition</h3>
+      <p>Developing pose-estimation and motion analysis techniques for gesture-based interaction, activity classification, and mobility assessment in naturalistic environments.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header reveal">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Research Experience</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="timeline">
+
+    <div class="tl-item reveal">
+      <div class="tl-year">2023 – 2026</div>
+      <div class="tl-content">
+        <h3>Postdoctoral Research Associate</h3>
+        <div class="tl-institution">Edge Hill University, Lancashire, UK &nbsp;·&nbsp; EPSRC/UKRI</div>
+        <p>Leading design and development of a drone-based autonomous triage system for high-risk environments (ATRACT project). Focuses on multimodal AI, real-time vital sign estimation, and injury severity prediction under MoD and WHO-aligned trustworthy AI frameworks.</p>
+        <span class="tl-tag">EPSRC Funded · ATRACT Project</span>
+      </div>
+    </div>
+
+    <div class="tl-item reveal">
+      <div class="tl-year">2022 – 2023</div>
+      <div class="tl-content">
+        <h3>Postdoctoral Research Associate</h3>
+        <div class="tl-institution">University of Bristol, UK &nbsp;·&nbsp; EPSRC/UKRI</div>
+        <p>Led vision-based research for the SPHERE-A smart home sensing platform for chronic health monitoring. Developed a deep learning pipeline for estimating turning angles from monocular in-home videos using 3D pose estimation for Parkinson's disease assessment.</p>
+        <span class="tl-tag">EPSRC Funded · SPHERE-A Project</span>
+      </div>
+    </div>
+
+    <div class="tl-item reveal">
+      <div class="tl-year">2021</div>
+      <div class="tl-content">
+        <h3>AI / Machine Learning Engineer</h3>
+        <div class="tl-institution">National Informatics Centre (NIC), MeitY, India</div>
+        <p>Developed a face-recognition-based attendance monitoring system for the Utkarsh Bang initiative. Contributed to AI frameworks for road inspection, traffic congestion analysis, and helmetless two-wheeler detection using deep learning.</p>
+        <span class="tl-tag">Government of India</span>
+      </div>
+    </div>
+
+    <div class="tl-item reveal">
+      <div class="tl-year">2020</div>
+      <div class="tl-content">
+        <h3>Research Engineer — UAV Guided Helicopter Landing</h3>
+        <div class="tl-institution">ELMAX Systems and Solutions · Jadavpur University, India</div>
+        <p>Built a vision-guided navigation framework to autonomously identify safe landing zones for helicopters in dynamic environments, in collaboration with an industry partner.</p>
+        <span class="tl-tag">Industry Collaboration</span>
+      </div>
+    </div>
+
+    <div class="tl-item reveal">
+      <div class="tl-year">2015 – 2021</div>
+      <div class="tl-content">
+        <h3>PhD — Computer Vision-Based Video Surveillance</h3>
+        <div class="tl-institution">Jadavpur University, Kolkata, India &nbsp;·&nbsp; CGPA: 9.5/10</div>
+        <p>Thesis: "On Some Problems in Computer Vision Based Video Surveillance." Proposed lightweight, training-less methods for real-time anomaly detection, crowd behaviour analysis, and person re-identification suited for resource-constrained environments. Supervised by Prof. Ananda S. Chowdhury.</p>
+        <span class="tl-tag">Doctorate · First Class</span>
+      </div>
+    </div>
+
+    <div class="tl-item reveal">
+      <div class="tl-year">2013 – 2015</div>
+      <div class="tl-content">
+        <h3>M.Tech — Electronics &amp; Communication Engineering</h3>
+        <div class="tl-institution">IIT Bhubaneswar, Odisha, India &nbsp;·&nbsp; CGPA: 8.16/10</div>
+        <p>Thesis focused on developing a contactless vision-based method to estimate pulse rate in infants during neurological examinations, leveraging color signal analysis and dimensionality reduction. Supervised by Dr. Debi Prosad Dogra.</p>
+        <span class="tl-tag">IIT · First Class</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="section-header reveal">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Publications</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="pub-filter reveal">
+    <button class="pub-filter-btn active" onclick="filterPubs('all',this)">All</button>
+    <button class="pub-filter-btn" onclick="filterPubs('journal',this)">Journals</button>
+    <button class="pub-filter-btn" onclick="filterPubs('conference',this)">Conferences</button>
+    <button class="pub-filter-btn" onclick="filterPubs('book',this)">Book Chapter</button>
+  </div>
+
+  <div class="pub-list" id="pub-list">
+
+    <div class="pub-item reveal" data-type="book">
+      <div class="pub-num">B1</div>
+      <div class="pub-body">
+        <div class="pub-title">Efficient Deep Learning for Key Challenges in Person Re-identification</div>
+        <div class="pub-authors"><strong>A. Sikdar</strong>, A. S. Chowdhury</div>
+        <div class="pub-venue">Pattern Recognition and Computer Vision in the New AI Era, World Scientific, 2025</div>
+      </div>
+      <div class="pub-meta"><span class="pub-badge badge-book">Book Chapter</span></div>
+    </div>
+
+    <div class="pub-item reveal" data-type="journal">
+      <div class="pub-num">J1</div>
+      <div class="pub-body">
+        <div class="pub-title">From Virtual Environments to Real-World Trials: Emerging Trends in Autonomous Driving</div>
+        <div class="pub-authors">A. Humnabadkar, <strong>A. Sikdar</strong>, B. Cave, H. Zhang, N. Bessis, A. Behera</div>
+        <div class="pub-venue">IEEE Trans. Intell. Transp. Syst. (Accepted)</div>
+      </div>
+      <div class="pub-meta"><span class="pub-badge badge-journal">Journal</span><div class="pub-if">IF: 8.4</div></div>
+    </div>
+
+    <div class="pub-item reveal" data-type="journal">
+      <div class="pub-num">J2</div>
+      <div class="pub-body">
+        <div class="pub-title">Your turn: At home turning angle estimation for Parkinson's disease severity assessment</div>
+        <div class="pub-authors">Q. Cheng, C. Morgan, <strong>A. Sikdar</strong>, A. Masullo, A. Whone, M. Mirmehdi</div>
+        <div class="pub-venue">Artificial Intelligence in Medicine, p.103194</div>
+      </div>
+      <div class="pub-meta"><span class="pub-badge badge-journal">Journal</span><div class="pub-if">IF: 6.2</div></div>
+    </div>
+
+    <div class="pub-item reveal" data-type="journal">
+      <div class="pub-num">J3</div>
+      <div class="pub-body">
+        <div class="pub-title">Interweaving Insights: High-Order Feature Interaction for Fine-Grained Visual Recognition</div>
+        <div class="pub-authors"><strong>A. Sikdar</strong>, Y. Liu, S. Kedarisetty, Y. Zhao, A. Ahmed, A. Behera</div>
+        <div class="pub-venue">International Journal of Computer Vision, 133(4), 1755–1779</div>
+      </div>
+      <div class="pub-meta"><span class="pub-badge badge-journal">Journal</span><div class="pub-if">IF: 9.3</div></div>
+    </div>
+
+    <div class="pub-item reveal" data-type="journal">
+      <div class="pub-num">J4</div>
+      <div class="pub-body">
+        <div class="pub-title">Lightweight Learning for Partial and Occluded Person Re-identification</div>
+        <div class="pub-authors"><strong>A. Sikdar</strong>, A. S. Chowdhury</div>
+        <div class="pub-venue">IEEE Trans. Artif. Intell., vol. 5, no. 6, pp. 3245–3256, June 2024</div>
+      </div>
+      <div class="pub-meta"><span class="pub-badge badge-journal">Journal</span></div>
+    </div>
+
+    <div class="pub-item reveal" data-type="journal">
+      <div class="pub-num">J5</div>
+      <div class="pub-body">
+        <div class="pub-title">A multimodal dataset of real world mobility activities in Parkinson's disease</div>
+        <div class="pub-authors">C. Morgan, E. L. Tonkin, A. Masullo, F. Jovan, <strong>A. Sikdar</strong>, P. Khaire, M. Mirmehdi et al.</div>
+        <div class="pub-venue">Scientific Data, 10(1), 918</div>
+      </div>
+      <div class="pub-meta"><span class="pub-badge badge-journal">Journal</span><div class="pub-if">IF: 6.9</div></div>
+    </div>
+
+    <div class="pub-item reveal" data-type="journal">
+      <div class="pub-num">J6</div>
+      <div class="pub-body">
+        <div class="pub-title">An Adaptive Training-less Framework for Anomaly Detection in Crowd Scenes</div>
+        <div class="pub-authors"><strong>A. Sikdar</strong>, A. S. Chowdhury</div>
+        <div class="pub-venue">Neurocomputing, 415 (2020), 317–331</div>
+      </div>
+      <div class="pub-meta"><span class="pub-badge badge-journal">Journal</span><div class="pub-if">IF: 6.5</div></div>
+    </div>
+
+    <div class="pub-item reveal" data-type="journal">
+      <div class="pub-num">J7</div>
+      <div class="pub-body">
+        <div class="pub-title">Scale-Invariant Batch-Adaptive Residual Learning for Person Re-identification</div>
+        <div class="pub-authors"><strong>A. Sikdar</strong>, A. S. Chowdhury</div>
+        <div class="pub-venue">Pattern Recognition Letters, 129 (2020), 279–286</div>
+      </div>
+      <div class="pub-meta"><span class="pub-badge badge-journal">Journal</span><div class="pub-if">IF: 3.3</div></div>
+    </div>
+
+    <div class="pub-item reveal" data-type="journal">
+      <div class="pub-num">J8</div>
+      <div class="pub-body">
+        <div class="pub-title">Computer-vision-guided human pulse rate estimation: a review</div>
+        <div class="pub-authors"><strong>A. Sikdar</strong>, S. K. Behera, D. P. Dogra</div>
+        <div class="pub-venue">IEEE Reviews in Biomedical Engineering, 9 (2016): 91–105</div>
+      </div>
+      <div class="pub-meta"><span class="pub-badge badge-journal">Journal</span><div class="pub-if">IF: 12</div></div>
+    </div>
+
+    <div class="pub-item reveal" data-type="conference">
+      <div class="pub-num">C1</div>
+      <div class="pub-body">
+        <div class="pub-title">Driving Through Graphs: A Bipartite Graph for Traffic Scene Analysis</div>
+        <div class="pub-authors">A. Humnabadkar, <strong>A. Sikdar</strong>, H. Zhang, T. Hussain, A. Behera</div>
+        <div class="pub-venue">IEEE ICIP 2024, Abu Dhabi, UAE — pp. 908–914</div>
+      </div>
+      <div class="pub-meta"><span class="pub-badge badge-conference">Conference</span></div>
+    </div>
+
+    <div class="pub-item reveal" data-type="conference">
+      <div class="pub-num">C2</div>
+      <div class="pub-body">
+        <div class="pub-title">High-Order Evolving Graphs for Enhanced Representation of Traffic Dynamics</div>
+        <div class="pub-authors">A. Humnabadkar, <strong>A. Sikdar</strong>, B. Cave, H. Zhang, P. Bakaki, A. Behera</div>
+        <div class="pub-venue">ECCV 2024 Workshop (VCAD), Milan, Italy</div>
+      </div>
+      <div class="pub-meta"><span class="pub-badge badge-conference">Workshop</span></div>
+    </div>
+
+    <div class="pub-item reveal" data-type="conference">
+      <div class="pub-num">C3</div>
+      <div class="pub-body">
+        <div class="pub-title">Unconstrained Vision Guided UAV Based Safe Helicopter Landing</div>
+        <div class="pub-authors"><strong>A. Sikdar</strong>, A. Sahu, D. Sen, R. Mahajan, A. S. Chowdhury</div>
+        <div class="pub-venue">ICPR 2021, Milan, Italy — pp. 8328–8335</div>
+      </div>
+      <div class="pub-meta"><span class="pub-badge badge-conference">Conference</span></div>
+    </div>
+
+    <div class="pub-item reveal" data-type="conference">
+      <div class="pub-num">C4</div>
+      <div class="pub-body">
+        <div class="pub-title">Open-Set Metric Learning for Person Re-Identification in the Wild</div>
+        <div class="pub-authors"><strong>A. Sikdar</strong>, D. Chatterjee, A. Bhowmik, A. S. Chowdhury</div>
+        <div class="pub-venue">IEEE ICIP 2020, Abu Dhabi, UAE — pp. 2356–2360</div>
+      </div>
+      <div class="pub-meta"><span class="pub-badge badge-conference">Conference</span></div>
+    </div>
+
+    <div class="pub-item reveal" data-type="conference">
+      <div class="pub-num">C5</div>
+      <div class="pub-body">
+        <div class="pub-title">Multi-Level Threat Analysis in Anomalous Crowd Videos</div>
+        <div class="pub-authors"><strong>A. Sikdar</strong>, A. S. Chowdhury</div>
+        <div class="pub-venue">CVIP 2019, Jaipur, India — Springer CCIS Vol. 1148, pp. 495–506</div>
+      </div>
+      <div class="pub-meta"><span class="pub-badge badge-conference">Conference</span></div>
+    </div>
+
+    <div class="pub-item reveal" data-type="conference">
+      <div class="pub-num">C6</div>
+      <div class="pub-body">
+        <div class="pub-title">An Ellipse Fitted Training-less Model for Pedestrian Detection</div>
+        <div class="pub-authors"><strong>A. Sikdar</strong>, A. S. Chowdhury</div>
+        <div class="pub-venue">IEEE ICAPR 2017, Bangalore, India</div>
+      </div>
+      <div class="pub-meta"><span class="pub-badge badge-conference">Conference</span></div>
+    </div>
+
+    <div class="pub-item reveal" data-type="conference">
+      <div class="pub-num">C7</div>
+      <div class="pub-body">
+        <div class="pub-title">ESAC: An Algorithm for Fissure Line Detection</div>
+        <div class="pub-authors">R. Roy, <strong>A. Sikdar</strong>, S. Mazumder, A. S. Chowdhury</div>
+        <div class="pub-venue">IEEE ICAPR 2017, Bangalore, India</div>
+      </div>
+      <div class="pub-meta"><span class="pub-badge badge-conference">Conference</span></div>
+    </div>
+
+    <div class="pub-item reveal" data-type="conference">
+      <div class="pub-num">C8</div>
+      <div class="pub-body">
+        <div class="pub-title">Contactless vision-based pulse rate detection of Infants Under Neurological Examinations</div>
+        <div class="pub-authors"><strong>A. Sikdar</strong>, S. K. Behera, D. P. Dogra, H. Bhaskar</div>
+        <div class="pub-venue">IEEE EMBC 2015, Milan, Italy — pp. 650–653</div>
+      </div>
+      <div class="pub-meta"><span class="pub-badge badge-conference">Conference</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TEACHING -->
+<section id="teaching">
+  <div class="section-header reveal">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Teaching &amp; Mentoring</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="timeline">
+
+    <div class="tl-item reveal">
+      <div class="tl-year">Edge Hill University</div>
+      <div class="tl-content">
+        <h3>Emerging Technologies (CIS4518, Level 7)</h3>
+        <div class="tl-institution">MSc Computing · MSc Artificial Intelligence · LLM</div>
+        <p>Developed and delivered lectures on Introduction to Computer Vision — covering digital image representation, filtering, convolution, and AI ethics. Designed Google Colab notebooks demonstrating NumPy, Matplotlib, and TensorFlow deep learning frameworks for postgraduate students.</p>
+        <span class="tl-tag">Module Development · Research-Led Teaching</span>
+      </div>
+    </div>
+
+    <div class="tl-item reveal">
+      <div class="tl-year">Edge Hill University</div>
+      <div class="tl-content">
+        <h3>Advanced Robotics &amp; Artificial Intelligence (CIS3137, Level 6)</h3>
+        <div class="tl-institution">Substitute Lecturer</div>
+        <p>Led lecture delivery and served as substitute lecturer, independently developing and delivering sessions on computer vision, image processing, and deep learning for autonomous systems — aligning learning outcomes with cutting-edge research and industry practice.</p>
+        <span class="tl-tag">Curriculum Development</span>
+      </div>
+    </div>
+
+    <div class="tl-item reveal">
+      <div class="tl-year">Jadavpur University</div>
+      <div class="tl-content">
+        <h3>Guest Faculty — Undergraduate Laboratory Courses</h3>
+        <div class="tl-institution">B.E. Electronics &amp; Telecommunication Engineering</div>
+        <p>Designed and supervised structured laboratory exercises in Digital Signal Processing, Data Structures, and Microprocessor &amp; Microcontroller Labs, strengthening students' understanding of algorithms, signal processing, and hardware interfacing.</p>
+        <span class="tl-tag">Laboratory Teaching</span>
+      </div>
+    </div>
+
+    <div class="tl-item reveal">
+      <div class="tl-year">Research Supervision</div>
+      <div class="tl-content">
+        <h3>Mentorship of M.Res &amp; PhD Students</h3>
+        <div class="tl-institution">Computer Vision · Deep Learning · AI Projects</div>
+        <p>Actively involved in supervision and mentorship at undergraduate and postgraduate levels. Provided research guidance to students and research assistants, leading to publications, conference presentations, and project-based outcomes in computer vision and deep learning.</p>
+        <span class="tl-tag">Research Mentorship</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header reveal">
+    <span class="section-num">05</span>
+    <h2 class="section-title">Technical Skills</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-group reveal">
+      <h3>Programming</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">MATLAB</span>
+        <span class="skill-tag">PyQt5</span>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <h3>Deep Learning Frameworks</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">PyTorch</span>
+        <span class="skill-tag">TensorFlow</span>
+        <span class="skill-tag">Keras</span>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <h3>Scientific Computing</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">NumPy</span>
+        <span class="skill-tag">SciPy</span>
+        <span class="skill-tag">Scikit-learn</span>
+        <span class="skill-tag">Matplotlib</span>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <h3>Research Areas</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Person Re-ID</span>
+        <span class="skill-tag">Anomaly Detection</span>
+        <span class="skill-tag">3D Pose Estimation</span>
+        <span class="skill-tag">Object Detection</span>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <h3>Professional Service</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">IEEE TIP Reviewer</span>
+        <span class="skill-tag">TCSVT Reviewer</span>
+        <span class="skill-tag">CVPR Reviewer</span>
+        <span class="skill-tag">BMVC Reviewer</span>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <h3>Platforms &amp; Tools</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Google Colab</span>
+        <span class="skill-tag">GitHub</span>
+        <span class="skill-tag">Linux</span>
+        <span class="skill-tag">LaTeX</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header reveal">
+    <span class="section-num">06</span>
+    <h2 class="section-title">Get in Touch</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="contact-grid">
+    <a href="mailto:arindamsikdarju@gmail.com" class="contact-item reveal">
+      <div class="contact-icon">✉</div>
+      <div class="contact-text">
+        <div class="contact-label">Personal Email</div>
+        <div class="contact-value">arindamsikdarju@gmail.com</div>
+      </div>
+    </a>
+    <a href="https://github.com/Arindam-1991" class="contact-item reveal" target="_blank">
+      <div class="contact-icon">⌥</div>
+      <div class="contact-text">
+        <div class="contact-label">GitHub</div>
+        <div class="contact-value">github.com/Arindam-1991</div>
+      </div>
+    </a>
+    <a href="https://www.linkedin.com/in/dr-arindam-sikdar-b496bb205" class="contact-item reveal" target="_blank">
+      <div class="contact-icon">in</div>
+      <div class="contact-text">
+        <div class="contact-label">LinkedIn</div>
+        <div class="contact-value">dr-arindam-sikdar-b496bb205</div>
+      </div>
+    </a>
+    <a href="https://scholar.google.com/citations?user=8R1eDrIAAAAJ&hl=en" class="contact-item reveal" target="_blank">
+      <div class="contact-icon">🎓</div>
+      <div class="contact-text">
+        <div class="contact-label">Google Scholar</div>
+        <div class="contact-value">View Publications &amp; Citations</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Arindam Sikdar &nbsp;·&nbsp; <a href="https://github.com/Arindam-1991">github.com/Arindam-1991</a></p>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+  document.querySelectorAll('.reveal').forEach((el, i) => {
+    el.style.transitionDelay = (i % 4) * 0.07 + 's';
+    obs.observe(el);
+  });
+
+  function filterPubs(type, btn) {
+    document.querySelectorAll('.pub-filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.pub-item').forEach(item => {
+      item.style.display = (type === 'all' || item.dataset.type === type) ? 'grid' : 'none';
+    });
+  }
+</script>
+</body>
+</html>
