@@ -506,6 +506,79 @@
     opacity: 0.7;
   }
   .pub-title-link:hover::after { color: var(--blue); opacity: 1; }
+
+  /* ── MOBILE NAV (hamburger) ── */
+  .nav-toggle {
+    display: none;
+    background: transparent; border: none; cursor: pointer;
+    width: 40px; height: 40px; padding: 8px;
+    color: #fff;
+  }
+  .nav-toggle span {
+    display: block; width: 22px; height: 2px; background: #fff;
+    margin: 4px auto; border-radius: 1px;
+    transition: transform 0.25s ease, opacity 0.2s ease;
+  }
+  .nav-toggle.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .nav-toggle.open span:nth-child(2) { opacity: 0; }
+  .nav-toggle.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+  /* ── MOBILE FIXES (<= 768px) ── */
+  @media (max-width: 768px) {
+    html, body { max-width: 100%; overflow-x: hidden; }
+    nav { padding: 0 1rem; }
+    .nav-toggle { display: block; }
+
+    /* Dropdown panel replaces hidden horizontal nav */
+    .nav-links {
+      display: none;
+      position: fixed; top: 56px; left: 0; right: 0;
+      flex-direction: column; gap: 0;
+      background: var(--navy);
+      padding: 0.5rem 0;
+      height: auto;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav-links.open { display: flex; }
+    .nav-links li { width: 100%; }
+    .nav-links a {
+      display: block; width: 100%;
+      padding: 0.85rem 1.4rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    /* Hero: keep text inside viewport */
+    #hero { padding: 5.5rem 1.2rem 2.5rem; }
+    .hero-name { font-size: clamp(2.4rem, 10vw, 3.4rem); }
+    .hero-title { font-size: 0.78rem; line-height: 1.6; word-break: break-word; }
+    .hero-intro { font-size: 0.95rem; max-width: 100%; }
+
+    /* Button row wraps instead of clipping */
+    .hero-links { flex-wrap: wrap; gap: 0.6rem; }
+    .btn { flex: 0 0 auto; }
+
+    /* Section padding + prevent any grid/image overflow */
+    section { padding: 3rem 1.2rem; }
+    img, svg, iframe { max-width: 100%; height: auto; }
+
+    /* Publication items: tighter on mobile */
+    .pub-item { grid-template-columns: auto 1fr; gap: 0.6rem; padding: 1rem; }
+    .pub-title, .pub-title-link { word-break: break-word; }
+
+    /* Filter buttons may overflow a narrow screen */
+    .pub-filter { flex-wrap: wrap; gap: 0.5rem; }
+
+    /* CTA grid on landing page */
+    .research-grid { gap: 1rem; }
+  }
+
+  /* Extra-narrow phones (iPhone SE etc.) */
+  @media (max-width: 380px) {
+    .hero-name { font-size: 2.2rem; }
+    .hero-badge { font-size: 0.6rem; padding: 0.3rem 0.7rem; }
+    .btn { font-size: 0.72rem; padding: 0.45rem 0.9rem; }
+  }
 </style>
 </head>
 <body>
@@ -513,7 +586,10 @@
 <!-- NAV -->
 <nav>
   <a href="index.html" class="nav-logo-link" style="text-decoration:none"><div class="nav-logo">A<span>.</span>Sikdar</div></a>
-  <ul class="nav-links">
+  <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" onclick="toggleNav(this)">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="nav-menu">
     <li><a href="index.html">Home</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="experience.html">Experience</a></li>
@@ -582,6 +658,13 @@
     document.querySelectorAll('.pub-item').forEach(item => {
       item.style.display = (type === 'all' || item.dataset.type === type) ? 'grid' : 'none';
     });
+  }
+
+  function toggleNav(btn) {
+    const menu = document.getElementById('nav-menu');
+    const isOpen = menu.classList.toggle('open');
+    btn.classList.toggle('open', isOpen);
+    btn.setAttribute('aria-expanded', isOpen);
   }
 </script>
 </body>
