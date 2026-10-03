@@ -701,9 +701,7 @@
       item.style.display = match ? 'grid' : 'none';
     });
     document.querySelectorAll('.pub-section-head').forEach(h => {
-      const g = h.dataset.group;
-      const show = type === 'all' || g === type || (type === 'conference' && g === 'conference');
-      h.style.display = show ? 'flex' : 'none';
+      h.style.display = type === 'all' ? 'flex' : 'none';
     });
   }
   // auto-update footer year
