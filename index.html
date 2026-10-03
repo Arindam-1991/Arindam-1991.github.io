@@ -129,6 +129,7 @@
   .pub-item:hover{border-color:var(--blue);transform:translateX(4px);box-shadow:0 3px 12px rgba(37,99,168,.08)}
   .pub-item[data-type="journal"]{background:rgba(37,99,168,.035);border-color:rgba(37,99,168,.18)}
   .pub-item[data-type="conference"]{background:rgba(22,163,74,.04);border-color:rgba(22,163,74,.2)}
+  .pub-item[data-type="workshop"]{background:rgba(22,163,74,.04);border-color:rgba(22,163,74,.2)}
   .pub-item[data-type="book"]{background:rgba(234,88,12,.04);border-color:rgba(234,88,12,.18)}
   .pub-num{font-family:'DM Mono',monospace;font-size:.68rem;color:var(--blue);padding-top:.1rem;min-width:28px}
   .pub-title{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:600;color:var(--navy);
@@ -139,8 +140,8 @@
                border:1px solid rgba(37,99,168,.25);padding:.15rem .55rem;border-radius:4px;
                text-decoration:none;vertical-align:middle;transition:all .15s}
   .pub-pdf-btn:hover{background:var(--blue);color:#fff}
-  .pub-item[data-type="conference"] .pub-pdf-btn{color:#16a34a;background:rgba(22,163,74,.08);border-color:rgba(22,163,74,.28)}
-  .pub-item[data-type="conference"] .pub-pdf-btn:hover{background:#16a34a;color:#fff}
+  .pub-item[data-type="conference"] .pub-pdf-btn,.pub-item[data-type="workshop"] .pub-pdf-btn{color:#16a34a;background:rgba(22,163,74,.08);border-color:rgba(22,163,74,.28)}
+  .pub-item[data-type="conference"] .pub-pdf-btn:hover,.pub-item[data-type="workshop"] .pub-pdf-btn:hover{background:#16a34a;color:#fff}
   .pub-item[data-type="book"] .pub-pdf-btn{color:#ea580c;background:rgba(234,88,12,.08);border-color:rgba(234,88,12,.25)}
   .pub-item[data-type="book"] .pub-pdf-btn:hover{background:#ea580c;color:#fff}
   .pub-authors{font-size:.82rem;color:var(--muted);margin-bottom:.3rem}
@@ -471,7 +472,7 @@
         <span class="pub-badge badge-conference">Conference</span>
       </div>
     </div>
-    <div class="pub-item reveal" data-type="conference">
+    <div class="pub-item reveal" data-type="workshop">
       <div class="pub-num">C2</div>
       <div class="pub-body">
         <div class="pub-title"><a href="https://doi.org/10.48550/arXiv.2409.11206" class="pub-title-link" target="_blank">High-Order Evolving Graphs for Enhanced Representation of Traffic Dynamics</a> <a href="papers/ECCV-VCD_workshop.pdf" class="pub-pdf-btn" target="_blank"><svg height="13" width="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> PDF</a></div>
@@ -479,7 +480,7 @@
         <div class="pub-venue">ECCV 2024 Workshop (VCAD), Milan, Italy</div>
       </div>
       <div class="pub-meta">
-        <span class="pub-badge badge-conference">Conference</span>
+        <span class="pub-badge badge-conference">Workshop</span>
       </div>
     </div>
     <div class="pub-item reveal" data-type="conference">
@@ -687,7 +688,9 @@
     document.querySelectorAll('.pub-filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     document.querySelectorAll('.pub-item').forEach(item => {
-      item.style.display = (type === 'all' || item.dataset.type === type) ? 'grid' : 'none';
+      const t = item.dataset.type;
+      const match = type === 'all' || t === type || (type === 'conference' && t === 'workshop');
+      item.style.display = match ? 'grid' : 'none';
     });
   }
   // auto-update footer year
