@@ -122,6 +122,11 @@
                   border:1px solid var(--border);background:#fff;color:var(--muted);transition:all .18s}
   .pub-filter-btn:hover,.pub-filter-btn.active{border-color:var(--blue);color:var(--blue);background:var(--blue-dim)}
   .pub-list{max-width:960px;display:flex;flex-direction:column;gap:.85rem}
+  .pub-section-head{display:flex;align-items:center;gap:1rem;margin:2rem 0 .4rem;padding-top:.5rem}
+  .pub-section-head:first-child{margin-top:.5rem}
+  .pub-section-head::before,.pub-section-head::after{content:'';flex:1;height:1px;background:var(--border)}
+  .pub-section-label{font-family:'DM Mono',monospace;font-size:.63rem;text-transform:uppercase;
+                     letter-spacing:.13em;white-space:nowrap;color:var(--muted);padding:0 .25rem}
   .pub-item{background:#fff;border:1px solid var(--border);border-radius:var(--radius);
              padding:1.2rem 1.5rem;display:grid;grid-template-columns:auto 1fr auto;gap:1.1rem;
              align-items:start;box-shadow:0 1px 4px rgba(0,0,0,.04);
@@ -362,6 +367,7 @@
     <button class="pub-filter-btn" onclick="filterPubs('book',this)">Book Chapter</button>
   </div>
   <div class="pub-list" id="pub-list">
+    <div class="pub-section-head" data-group="book"><span class="pub-section-label">Book Chapters</span></div>
     <div class="pub-item reveal" data-type="book">
       <div class="pub-num">B1</div>
       <div class="pub-body">
@@ -373,6 +379,7 @@
         <span class="pub-badge badge-book">Book Chapter</span>
       </div>
     </div>
+    <div class="pub-section-head" data-group="journal"><span class="pub-section-label">Journal Articles</span></div>
     <div class="pub-item reveal" data-type="journal">
       <div class="pub-num">J1</div>
       <div class="pub-body">
@@ -461,6 +468,7 @@
         <span class="pub-badge badge-journal">Journal</span>
       </div>
     </div>
+    <div class="pub-section-head" data-group="conference"><span class="pub-section-label">Conference & Workshop Papers</span></div>
     <div class="pub-item reveal" data-type="conference">
       <div class="pub-num">C1</div>
       <div class="pub-body">
@@ -691,6 +699,11 @@
       const t = item.dataset.type;
       const match = type === 'all' || t === type || (type === 'conference' && t === 'workshop');
       item.style.display = match ? 'grid' : 'none';
+    });
+    document.querySelectorAll('.pub-section-head').forEach(h => {
+      const g = h.dataset.group;
+      const show = type === 'all' || g === type || (type === 'conference' && g === 'conference');
+      h.style.display = show ? 'flex' : 'none';
     });
   }
   // auto-update footer year
