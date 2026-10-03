@@ -139,8 +139,8 @@
   .pub-authors{font-size:.82rem;color:var(--muted);margin-bottom:.3rem}
   .pub-authors strong{color:var(--text);font-weight:600}
   .pub-venue{font-family:'DM Mono',monospace;font-size:.7rem;color:var(--teal);letter-spacing:.02em}
-  .pub-venue-link{color:var(--teal);text-decoration:none;border-bottom:1px dotted var(--teal);transition:border-bottom-style .15s,opacity .15s}
-  .pub-venue-link:hover{border-bottom-style:solid;opacity:.75}
+  .pub-title-link{color:inherit;text-decoration:none;border-bottom:1px solid transparent;transition:color .15s,border-color .15s}
+  .pub-title-link:hover{color:var(--blue);border-bottom-color:var(--blue)}
   .pub-meta{display:flex;flex-direction:column;align-items:flex-end;gap:.4rem}
   .pub-badge{font-family:'DM Mono',monospace;font-size:.62rem;text-transform:uppercase;
               letter-spacing:.1em;padding:.22rem .65rem;border-radius:20px;white-space:nowrap}
@@ -394,9 +394,9 @@
     <div class="pub-item reveal" data-type="journal">
       <div class="pub-num">J3</div>
       <div class="pub-body">
-        <div class="pub-title">Interweaving Insights: High-Order Feature Interaction for Fine-Grained Visual Recognition</div>
+        <div class="pub-title"><a href="https://link.springer.com/article/10.1007/s11263-024-02260-y" class="pub-title-link" target="_blank">Interweaving Insights: High-Order Feature Interaction for Fine-Grained Visual Recognition</a></div>
         <div class="pub-authors"><strong>A. Sikdar</strong>, Y. Liu, S. Kedarisetty, Y. Zhao, A. Ahmed, A. Behera</div>
-        <div class="pub-venue"><a href="https://link.springer.com/article/10.1007/s11263-024-02260-y" class="pub-venue-link" target="_blank">International Journal of Computer Vision, 133(4), 1755–1779</a></div>
+        <div class="pub-venue">International Journal of Computer Vision, 133(4), 1755–1779</div>
       </div>
       <div class="pub-meta">
         <span class="pub-badge badge-journal">Journal</span>
