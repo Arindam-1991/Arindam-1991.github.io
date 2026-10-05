@@ -393,10 +393,10 @@ CSS = """
   .hero-statement{font-size:.97rem;color:var(--text);line-height:1.85;max-width:640px;
                   margin-bottom:1.1rem}
   .hero-topics{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.6rem}
-  .hero-topic{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.09em;
+  .hero-topic{font-family:'DM Mono',monospace;font-size:.75rem;letter-spacing:.07em;
               text-transform:uppercase;color:var(--navy);
               border:1px solid rgba(26,39,68,.2);background:rgba(255,255,255,.7);
-              padding:.28rem .85rem;border-radius:20px;pointer-events:none;user-select:none}
+              padding:.35rem 1rem;border-radius:20px;pointer-events:none;user-select:none}
   .hero-links{display:flex;gap:.7rem;flex-wrap:wrap}
   .btn{display:inline-flex;align-items:center;gap:.4rem;padding:.5rem 1.1rem;border-radius:var(--radius);
        font-size:.76rem;font-weight:500;text-decoration:none;white-space:nowrap;
