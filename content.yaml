@@ -25,13 +25,14 @@ site:
 
 
 # ── HERO (top of page) ────────────────────────────────────────────────────────
-# photo: upload your headshot to GitHub as img/profile.jpg to display it.
-# cv:    CV is served from papers/CV_Arindam_Sikdar.pdf (already in the repo).
+# photo: upload your headshot to GitHub as images/profile.jpg to display it.
+#        Keep all diagrams and photos in the images/ folder alongside profile.jpg.
+# cv:    CV is served from CV_Arindam_Sikdar.pdf in the root of the repo.
 hero:
   first_name: "Arindam"
   last_name: "Sikdar"
-  photo: "img/profile.jpg"
-  cv: "papers/CV_Arindam_Sikdar.pdf"
+  photo: "images/profile.jpg"
+  cv: "CV_Arindam_Sikdar.pdf"
 
   # Short descriptor shown above your name
   descriptor: "Computer Vision & AI Researcher"
@@ -66,7 +67,7 @@ hero:
   # icon options: cv | scholar | github | orcid | linkedin | email
   links:
     - label: "CV"
-      url: "papers/CV_Arindam_Sikdar.pdf"
+      url: "CV_Arindam_Sikdar.pdf"
       style: "cv"
       icon: "cv"
     - label: "Scholar"
