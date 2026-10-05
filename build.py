@@ -435,11 +435,11 @@ CSS = """
                         color:var(--blue);line-height:1}
   .hero-photo-hint{font-family:'DM Mono',monospace;font-size:.65rem;text-align:center;
                    color:var(--muted);letter-spacing:.06em;line-height:1.6}
-  /* Highlight white cards — always centred under photo, capped to photo width */
-  .hero-highlights{display:grid;grid-template-columns:repeat(auto-fill,minmax(115px,1fr));gap:.7rem;
-                   width:min(240px,90%)}
+  /* Highlight white cards — always in a row, centred under photo */
+  .hero-highlights{display:flex;flex-wrap:wrap;justify-content:center;gap:.7rem;
+                   width:min(260px,90%)}
   .hero-hl{background:#fff;border:1px solid var(--border);border-radius:var(--radius);
-            padding:.9rem .7rem;text-align:center;
+            padding:.9rem .7rem;text-align:center;flex:1 1 100px;
             box-shadow:0 1px 6px rgba(0,0,0,.05);transition:border-color .18s,box-shadow .18s}
   .hero-hl:hover{border-color:var(--blue);box-shadow:0 3px 12px rgba(37,99,168,.10)}
   .hero-hl-num{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;
@@ -618,7 +618,7 @@ CSS = """
     .hero-right{display:contents}
     .hero-portrait-area{order:-1;display:flex;flex-direction:column;align-items:center}
     .hero-left{order:0}
-    .hero-highlights{order:1;width:min(240px,90%);margin:0 auto}
+    .hero-highlights{order:1;width:min(260px,90%);margin:0 auto}
     .hero-news{padding:1.2rem 1.5rem}
     .hero-links{flex-wrap:wrap}
     section{padding:3.5rem 1.5rem}
