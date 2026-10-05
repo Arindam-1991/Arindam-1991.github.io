@@ -422,7 +422,7 @@ CSS = """
   .btn-scholar:hover{background:var(--blue-dim);transform:translateY(-1px)}
   .btn-outline{background:#fff;color:var(--navy);border:1px solid var(--border);box-shadow:0 1px 4px rgba(0,0,0,.06)}
   .btn-outline:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-1px)}
-  .hero-right{position:relative;z-index:1;display:flex;flex-direction:column;gap:1.5rem}
+  .hero-right{position:relative;z-index:1;display:flex;flex-direction:column;gap:1.5rem;align-items:center}
   .hero-portrait-area{display:flex;flex-direction:column;align-items:center;gap:.9rem}
   .hero-photo-wrap{position:relative;width:min(240px,90%);aspect-ratio:4/5;border-radius:12px;
                    overflow:hidden;border:3px solid var(--border);box-shadow:0 8px 32px rgba(26,39,68,.14)}
@@ -435,8 +435,9 @@ CSS = """
                         color:var(--blue);line-height:1}
   .hero-photo-hint{font-family:'DM Mono',monospace;font-size:.65rem;text-align:center;
                    color:var(--muted);letter-spacing:.06em;line-height:1.6}
-  /* Highlight white cards */
-  .hero-highlights{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.7rem}
+  /* Highlight white cards — always centred under photo, capped to photo width */
+  .hero-highlights{display:grid;grid-template-columns:repeat(auto-fill,minmax(115px,1fr));gap:.7rem;
+                   width:min(240px,90%)}
   .hero-hl{background:#fff;border:1px solid var(--border);border-radius:var(--radius);
             padding:.9rem .7rem;text-align:center;
             box-shadow:0 1px 6px rgba(0,0,0,.05);transition:border-color .18s,box-shadow .18s}
