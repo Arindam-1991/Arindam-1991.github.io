@@ -63,20 +63,7 @@ def build_hero(h, news_items=None):
     first_name = escape(h.get("first_name", ""))
     last_name  = escape(h.get("last_name", ""))
     photo_src  = h.get("photo", "img/profile.jpg")
-    descriptor = escape(h.get("descriptor", "Computer Vision & AI Researcher"))
     statement  = escape(h.get("research_statement", ""))
-
-    # Affiliation lines
-    aff_html = "".join(
-        f'<span class="hero-aff-item">{escape(a)}</span>'
-        for a in h.get("affiliations", [])
-    )
-
-    # Research topic pills
-    topics_html = "".join(
-        f'<span class="hero-topic">{escape(t)}</span>'
-        for t in h.get("topics", [])
-    )
 
     # Action buttons
     btn_cls = {"cv": "btn-cv", "scholar": "btn-scholar",
@@ -142,11 +129,8 @@ def build_hero(h, news_items=None):
   <div class="hero-inner">
 
     <div class="hero-left">
-      <p class="hero-descriptor">{descriptor}</p>
       <h1 class="hero-name">{first_name}<br><em>{last_name}</em></h1>
       <p class="hero-statement reveal">{statement}</p>
-      <div class="hero-affiliations reveal">{aff_html}</div>
-      <div class="hero-topics reveal">{topics_html}</div>
       <div class="hero-links reveal">{buttons.strip()}</div>
     </div>
 
@@ -393,24 +377,12 @@ CSS = """
               gap:3rem;align-items:center;max-width:1420px;margin:0 auto;
               padding:7rem 3rem 4rem}
   .hero-left{display:flex;flex-direction:column}
-  .hero-descriptor{font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.14em;
-                   text-transform:uppercase;color:var(--blue);background:var(--blue-dim);
-                   border:1px solid rgba(37,99,168,.22);padding:.35rem .9rem;border-radius:20px;
-                   margin-bottom:1.4rem;display:inline-flex;align-items:center;gap:.5rem;
-                   width:fit-content;animation:fadeUp .6s ease both}
-  .hero-descriptor::before{content:'●';font-size:.45rem;color:var(--teal)}
   .hero-name{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,5.5vw,4.8rem);
-             font-weight:300;line-height:1.05;color:var(--navy);margin-bottom:1.2rem;
-             animation:fadeUp .6s .1s ease both}
+             font-weight:300;line-height:1.05;color:var(--navy);margin-bottom:1.4rem;
+             animation:fadeUp .6s ease both}
   .hero-name em{font-style:italic;color:var(--blue)}
-  .hero-statement{font-size:.97rem;color:var(--text);line-height:1.85;max-width:520px;
-                  margin-bottom:1.4rem}
-  .hero-affiliations{display:flex;flex-direction:column;gap:.25rem;margin-bottom:1.2rem}
-  .hero-aff-item{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted);letter-spacing:.03em}
-  .hero-topics{display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:1.6rem}
-  .hero-topic{font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.08em;
-              text-transform:uppercase;background:var(--surface2);color:var(--navy);
-              border:1px solid var(--border);padding:.28rem .75rem;border-radius:20px}
+  .hero-statement{font-size:.97rem;color:var(--text);line-height:1.85;max-width:640px;
+                  margin-bottom:1.8rem}
   .hero-links{display:flex;gap:.7rem;flex-wrap:wrap}
   .btn{display:inline-flex;align-items:center;gap:.4rem;padding:.5rem 1.1rem;border-radius:var(--radius);
        font-size:.76rem;font-weight:500;text-decoration:none;white-space:nowrap;
