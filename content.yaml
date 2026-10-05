@@ -40,18 +40,20 @@ hero:
     - "Vision-Language Models"
     - "Multimodal AI"
 
-  # Compact academic biography paragraph
+  # Compact academic biography paragraph.
+  # Supports inline markup: **bold**, *italic*, [link text](url)
   research_statement: >-
-    I am a researcher in Computer Vision and Artificial Intelligence. My research
-    focuses on data-efficient and structured visual learning, with interests in
-    graph-based reasoning, vision-language learning, multimodal AI, and
-    human-centered visual intelligence. Previously, I was a Postdoctoral Research
-    Associate at Edge Hill University, working on the EPSRC-funded ATRACT project,
-    and at the University of Bristol, where I contributed to the EPSRC-funded
-    SPHERE programme on vision-based health monitoring. I received my Ph.D. from
-    Jadavpur University. My research has appeared in venues including IJCV, IEEE
-    Transactions on Artificial Intelligence, Artificial Intelligence in Medicine,
-    Scientific Data, and ICIP.
+    I am a researcher in **Computer Vision and Artificial Intelligence**, focusing
+    on **data-efficient and structured visual learning** for robust real-world
+    perception. Previously, I was a Postdoctoral Research Associate at
+    **Edge Hill University**, working on the UKRI/EPSRC-funded
+    [ATRACT project](https://gtr.ukri.org/projects?ref=EP%2FX028631%2F1), and at
+    the **University of Bristol**, where I contributed to the EPSRC-funded
+    [SPHERE programme](https://gtr.ukri.org/projects?ref=EP%2FR005273%2F1) on
+    vision-based health monitoring. I received my Ph.D. from **Jadavpur University**.
+    My research has appeared in venues including *IJCV*,
+    *IEEE Transactions on Artificial Intelligence*,
+    *Artificial Intelligence in Medicine*, *Scientific Data*, and *ICIP*.
 
   # Compact highlights shown beneath the portrait (2–3 items)
   highlights:
