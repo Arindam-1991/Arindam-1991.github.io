@@ -491,7 +491,7 @@ CSS = """
   section{padding:5rem 3rem;position:relative}
   section:nth-child(even){background:var(--surface);border-top:1px solid var(--border-light);border-bottom:1px solid var(--border-light)}
   .section-header{display:flex;align-items:baseline;gap:1rem;margin-bottom:3rem}
-  .section-num{font-family:'DM Mono',monospace;font-size:.68rem;color:var(--blue);letter-spacing:.1em}
+  .section-num{display:none}
   .section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3vw,2.5rem);font-weight:400;color:var(--navy)}
   .section-line{flex:1;height:2px;background:linear-gradient(to right,var(--border),transparent);margin-left:1rem;max-width:200px}
 
