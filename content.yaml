@@ -1,0 +1,474 @@
+# =============================================================================
+#  content.yaml  —  YOUR WEBSITE CONTENT
+#
+#  HOW TO USE:
+#    1. Edit anything in this file
+#    2. Run:  python build.py
+#    3. Upload the new index.html to GitHub
+#
+#  TIPS:
+#    - Wrap your name in **double stars** to bold it in author lists
+#    - Leave pdf: "" blank if you have no PDF for a paper
+#    - To add a paper PDF: put the file in a "papers/" folder in your GitHub
+#      repo, then set  pdf: "papers/your_file.pdf"
+#    - Add a new publication by copying any block under publications > items
+#      IDs (J1, J2, C1...) are assigned automatically — no need to set them!
+#      Just set the year: and drop entries in any order; build.py will sort.
+#    - Add a new experience by copying any block under experience > items
+# =============================================================================
+
+
+# ── SITE META ─────────────────────────────────────────────────────────────────
+site:
+  title: "Arindam Sikdar — Computer Vision Researcher"
+  author: "Arindam Sikdar"
+
+
+# ── HERO (top of page) ────────────────────────────────────────────────────────
+# photo: upload your headshot to GitHub as img/profile.jpg to display it.
+# cv:    CV is served from papers/CV_Arindam_Sikdar.pdf (already in the repo).
+hero:
+  first_name: "Arindam"
+  last_name: "Sikdar"
+  photo: "img/profile.jpg"
+  cv: "papers/CV_Arindam_Sikdar.pdf"
+
+  # Short descriptor shown above your name
+  descriptor: "Computer Vision & AI Researcher"
+
+  # 3–4 line research statement (replaces the old résumé-style summary)
+  research_statement: >-
+    My research develops data-efficient and structured visual learning systems
+    that can reason about complex scenes, adapt from limited supervision, and
+    operate reliably in real-world environments. My work spans graph-based visual
+    reasoning, fine-grained recognition, vision-language learning, human-centred
+    AI, and autonomous perception.
+
+  affiliations:
+    - "Previously: Edge Hill University · University of Bristol"
+    - "Ph.D., Jadavpur University"
+
+  # Understated research topic pills beneath the statement
+  topics:
+    - "Computer Vision"
+    - "Graph Learning"
+    - "Vision-Language Models"
+    - "Multimodal AI"
+
+  # Compact highlights shown beneath the portrait (2–3 items)
+  highlights:
+    - num: "15+"
+      label: "Peer-reviewed publications"
+    - num: "2×"
+      label: "EPSRC-funded postdoc appointments"
+    - num: "IPTA 2026"
+      label: "Track Chair"
+
+  # Link styles: cv (navy filled) | scholar (blue outlined) | outline (light)
+  # icon options: cv | scholar | github | orcid | linkedin | email
+  links:
+    - label: "CV"
+      url: "papers/CV_Arindam_Sikdar.pdf"
+      style: "cv"
+      icon: "cv"
+    - label: "Scholar"
+      url: "https://scholar.google.com/citations?user=8R1eDrIAAAAJ&hl=en"
+      style: "scholar"
+      icon: "scholar"
+    - label: "GitHub"
+      url: "https://github.com/Arindam-1991"
+      style: "outline"
+      icon: "github"
+    - label: "ORCID"
+      url: "https://orcid.org/0000-0002-5697-0060"
+      style: "outline"
+      icon: "orcid"
+    - label: "LinkedIn"
+      url: "https://www.linkedin.com/in/dr-arindam-sikdar-b496bb205"
+      style: "outline"
+      icon: "linkedin"
+
+
+# ── RECENT UPDATES (shown in the hero / first screen) ─────────────────────────
+# Keep to 3 items max. tag options: PUBLICATION | SERVICE | RESEARCH | AWARD | TALK
+news:
+  - year: "2026"
+    tag: "PUBLICATION"
+    text: >-
+      Paper published in IEEE Transactions on Intelligent Transportation Systems
+      on emerging trends in autonomous driving.
+  - year: "2026"
+    tag: "SERVICE"
+    text: "Serving as Track Chair for IPTA 2026."
+  - year: "2025"
+    tag: "PUBLICATION"
+    text: >-
+      Interweaving Insights: High-Order Feature Interaction for Fine-Grained
+      Visual Recognition published in IJCV (IF 9.3).
+
+
+# ── ABOUT — Research Interests ────────────────────────────────────────────────
+about:
+  cards:
+    - icon: "👁"
+      title: "Computer Vision & Pattern Recognition"
+      text: >-
+        Developing interpretable, efficient, and scalable visual intelligence systems
+        with emphasis on person re-identification, fine-grained visual recognition,
+        and crowd analysis.
+
+    - icon: "🤖"
+      title: "Deep Learning & Multimodal AI"
+      text: >-
+        Designing novel deep learning architectures for high-order feature interactions,
+        multimodal fusion, and real-time inference in autonomous and intelligent systems.
+
+    - icon: "🚨"
+      title: "Visual Anomaly Detection"
+      text: >-
+        Building training-less and adaptive frameworks for anomaly detection in crowd
+        scenes and surveillance environments using lightweight, resource-efficient methods.
+
+    - icon: "🏥"
+      title: "Smart Healthcare Applications"
+      text: >-
+        Leveraging vision-based sensing for unobtrusive symptom monitoring — including
+        Parkinson's disease assessment and infant pulse rate estimation — to enable
+        remote clinical care.
+
+    - icon: "🛸"
+      title: "Autonomous Systems & Robotics"
+      text: >-
+        Integrating trustworthy AI principles into drone-based triage systems,
+        UAV-guided navigation, and traffic scene analysis for safety-critical
+        real-world deployments.
+
+    - icon: "🔬"
+      title: "Human Activity Recognition"
+      text: >-
+        Developing pose-estimation and motion analysis techniques for gesture-based
+        interaction, activity classification, and mobility assessment in naturalistic
+        environments.
+
+
+# ── EXPERIENCE ────────────────────────────────────────────────────────────────
+# To add a new position: copy one block (years through tag) and fill it in.
+experience:
+  items:
+    - years: "2023 – 2026"
+      title: "Postdoctoral Research Associate"
+      institution: "Edge Hill University, Lancashire, UK · EPSRC/UKRI"
+      description: >-
+        Leading design and development of a drone-based autonomous triage system
+        for high-risk environments (ATRACT project). Focuses on multimodal AI,
+        real-time vital sign estimation, and injury severity prediction under MoD
+        and WHO-aligned trustworthy AI frameworks.
+      tag: "EPSRC Funded · ATRACT Project"
+
+    - years: "2022 – 2023"
+      title: "Postdoctoral Research Associate"
+      institution: "University of Bristol, UK · EPSRC/UKRI"
+      description: >-
+        Led vision-based research for the SPHERE-A smart home sensing platform for
+        chronic health monitoring. Developed a deep learning pipeline for estimating
+        turning angles from monocular in-home videos using 3D pose estimation for
+        Parkinson's disease assessment.
+      tag: "EPSRC Funded · SPHERE-A Project"
+
+    - years: "2021"
+      title: "AI / Machine Learning Engineer"
+      institution: "National Informatics Centre (NIC), MeitY, India"
+      description: >-
+        Developed a face-recognition-based attendance monitoring system for the
+        Utkarsh Bang initiative. Contributed to AI frameworks for road inspection,
+        traffic congestion analysis, and helmetless two-wheeler detection using
+        deep learning.
+      tag: "Government of India"
+
+    - years: "2020"
+      title: "Research Engineer — UAV Guided Helicopter Landing"
+      institution: "ELMAX Systems and Solutions · Jadavpur University, India"
+      description: >-
+        Built a vision-guided navigation framework to autonomously identify safe
+        landing zones for helicopters in dynamic environments, in collaboration
+        with an industry partner.
+      tag: "Industry Collaboration"
+
+    - years: "2015 – 2021"
+      title: "PhD — Computer Vision-Based Video Surveillance"
+      institution: "Jadavpur University, Kolkata, India · CGPA: 9.5/10"
+      description: >-
+        Thesis: On Some Problems in Computer Vision Based Video Surveillance.
+        Proposed lightweight, training-less methods for real-time anomaly detection,
+        crowd behaviour analysis, and person re-identification suited for
+        resource-constrained environments. Supervised by Prof. Ananda S. Chowdhury.
+      tag: "Doctorate · First Class"
+
+    - years: "2013 – 2015"
+      title: "M.Tech — Electronics & Communication Engineering"
+      institution: "IIT Bhubaneswar, Odisha, India · CGPA: 8.16/10"
+      description: >-
+        Thesis focused on developing a contactless vision-based method to estimate
+        pulse rate in infants during neurological examinations, leveraging color
+        signal analysis and dimensionality reduction. Supervised by Dr. Debi Prosad Dogra.
+      tag: "IIT · First Class"
+
+
+# ── PUBLICATIONS ──────────────────────────────────────────────────────────────
+# type:          journal | conference | workshop | book
+# year:          publication year as an integer — used for auto-sort and auto-ID
+# authors:       wrap your name in **double stars** to bold it
+# impact_factor: leave "" if none
+# url:           leave "" if none, OR paste the official DOI / publisher link
+#                — this makes the title a clickable hyperlink
+# pdf:           leave "" if none, OR set to a relative path like
+#                "papers/J3_Sikdar_IJCV_2024.pdf"
+#
+# To add a new paper: copy any block (type through pdf) and fill it in.
+# IDs are assigned automatically — just set year: and the correct type:.
+# build.py sorts each category by year (newest first) and numbers them.
+publications:
+  items:
+    - type: "book"
+      year: 2025
+      title: "Efficient Deep Learning for Key Challenges in Person Re-identification"
+      authors: "**A. Sikdar**, A. S. Chowdhury"
+      venue: "Pattern Recognition and Computer Vision in the New AI Era, World Scientific, 2025"
+      impact_factor: ""
+      url: "https://doi.org/10.1142/9789819807154_0017"
+      pdf: ""
+
+    - type: "journal"
+      year: 2026
+      title: "From Virtual Environments to Real-World Trials: Emerging Trends in Autonomous Driving"
+      authors: "A. Humnabadkar, **A. Sikdar**, B. Cave, H. Zhang, N. Bessis, A. Behera"
+      venue: "IEEE Trans. Intell. Transp. Syst., 27(8), 8901–8921, 2026"
+      impact_factor: "8.4"
+      url: "https://doi.org/10.1109/TITS.2026.3679248"
+      pdf: "papers/T_ITS_2026.pdf"
+
+    - type: "journal"
+      year: 2025
+      title: "Your turn: At home turning angle estimation for Parkinson's disease severity assessment"
+      authors: "Q. Cheng, C. Morgan, **A. Sikdar**, A. Masullo, A. Whone, M. Mirmehdi"
+      venue: "Artificial Intelligence in Medicine, p.103194"
+      impact_factor: "6.2"
+      url: "https://doi.org/10.1016/j.artmed.2025.103194"
+      pdf: "papers/AI_in_Med_2025.pdf"
+
+    - type: "journal"
+      year: 2025
+      title: "Interweaving Insights: High-Order Feature Interaction for Fine-Grained Visual Recognition"
+      authors: "**A. Sikdar**, Y. Liu, S. Kedarisetty, Y. Zhao, A. Ahmed, A. Behera"
+      venue: "International Journal of Computer Vision, 133(4), 1755–1779"
+      impact_factor: "9.3"
+      url: "https://doi.org/10.1007/s11263-024-02260-y"
+      pdf: "papers/IJCV_2025.pdf"
+
+    - type: "journal"
+      year: 2024
+      title: "Lightweight Learning for Partial and Occluded Person Re-identification"
+      authors: "**A. Sikdar**, A. S. Chowdhury"
+      venue: "IEEE Trans. Artif. Intell., vol. 5, no. 6, pp. 3245–3256, June 2024"
+      impact_factor: ""
+      url: "https://doi.org/10.1109/TAI.2023.3346333"
+      pdf: "papers/TAI_2024.pdf"
+
+    - type: "journal"
+      year: 2023
+      title: "A multimodal dataset of real world mobility activities in Parkinson's disease"
+      authors: "C. Morgan, E. L. Tonkin, A. Masullo, F. Jovan, **A. Sikdar**, P. Khaire, M. Mirmehdi et al."
+      venue: "Scientific Data, 10(1), 918"
+      impact_factor: "6.9"
+      url: "https://doi.org/10.1038/s41597-023-02663-5"
+      pdf: "papers/SD_2023.pdf"
+
+    - type: "journal"
+      year: 2020
+      title: "An Adaptive Training-less Framework for Anomaly Detection in Crowd Scenes"
+      authors: "**A. Sikdar**, A. S. Chowdhury"
+      venue: "Neurocomputing, 415 (2020), 317–331"
+      impact_factor: "6.5"
+      url: "https://doi.org/10.1016/j.neucom.2020.07.058"
+      pdf: "papers/Neurocomputing_2020.pdf"
+
+    - type: "journal"
+      year: 2020
+      title: "Scale-Invariant Batch-Adaptive Residual Learning for Person Re-identification"
+      authors: "**A. Sikdar**, A. S. Chowdhury"
+      venue: "Pattern Recognition Letters, 129 (2020), 279–286"
+      impact_factor: "3.3"
+      url: "https://doi.org/10.1016/j.patrec.2019.11.032"
+      pdf: "papers/PRL_2020.pdf"
+
+    - type: "journal"
+      year: 2016
+      title: "Computer-vision-guided human pulse rate estimation: a review"
+      authors: "**A. Sikdar**, S. K. Behera, D. P. Dogra"
+      venue: "IEEE Reviews in Biomedical Engineering, 9 (2016): 91–105"
+      impact_factor: "12"
+      url: "https://doi.org/10.1109/RBME.2016.2551778"
+      pdf: "papers/RBME2016.pdf"
+
+    - type: "conference"
+      year: 2024
+      title: "Driving Through Graphs: A Bipartite Graph for Traffic Scene Analysis"
+      authors: "A. Humnabadkar, **A. Sikdar**, H. Zhang, T. Hussain, A. Behera"
+      venue: "IEEE ICIP 2024, Abu Dhabi, UAE — pp. 908–914"
+      impact_factor: ""
+      url: "https://doi.org/10.1109/ICIP51287.2024.10647492"
+      pdf: "papers/ICIP_2024.pdf"
+
+    - type: "workshop"
+      year: 2024
+      title: "High-Order Evolving Graphs for Enhanced Representation of Traffic Dynamics"
+      authors: "A. Humnabadkar, **A. Sikdar**, B. Cave, H. Zhang, P. Bakaki, A. Behera"
+      venue: "ECCV 2024 Workshop (VCAD), Milan, Italy"
+      impact_factor: ""
+      url: "https://doi.org/10.48550/arXiv.2409.11206"
+      pdf: "papers/ECCV-VCD_workshop.pdf"
+
+    - type: "conference"
+      year: 2021
+      title: "Unconstrained Vision Guided UAV Based Safe Helicopter Landing"
+      authors: "**A. Sikdar**, A. Sahu, D. Sen, R. Mahajan, A. S. Chowdhury"
+      venue: "ICPR 2021, Milan, Italy — pp. 8328–8335"
+      impact_factor: ""
+      url: "https://doi.org/10.1109/ICPR48806.2021.9412966"
+      pdf: "papers/ICPR_2021.pdf"
+
+    - type: "conference"
+      year: 2020
+      title: "Open-Set Metric Learning for Person Re-Identification in the Wild"
+      authors: "**A. Sikdar**, D. Chatterjee, A. Bhowmik, A. S. Chowdhury"
+      venue: "IEEE ICIP 2020, Abu Dhabi, UAE — pp. 2356–2360"
+      impact_factor: ""
+      url: "https://doi.org/10.1109/ICIP40778.2020.9190744"
+      pdf: "papers/ICIP_2020.pdf"
+
+    - type: "conference"
+      year: 2019
+      title: "Multi-Level Threat Analysis in Anomalous Crowd Videos"
+      authors: "**A. Sikdar**, A. S. Chowdhury"
+      venue: "CVIP 2019, Jaipur, India — Springer CCIS Vol. 1148, pp. 495–506"
+      impact_factor: ""
+      url: "https://doi.org/10.1007/978-981-15-4018-9_44"
+      pdf: ""
+
+    - type: "conference"
+      year: 2017
+      title: "An Ellipse Fitted Training-less Model for Pedestrian Detection"
+      authors: "**A. Sikdar**, A. S. Chowdhury"
+      venue: "IEEE ICAPR 2017, Bangalore, India"
+      impact_factor: ""
+      url: "https://doi.org/10.1109/ICAPR.2017.8592967"
+      pdf: "papers/ICAPR1_2017.pdf"
+
+    - type: "conference"
+      year: 2017
+      title: "ESAC: An Algorithm for Fissure Line Detection"
+      authors: "R. Roy, **A. Sikdar**, S. Mazumder, A. S. Chowdhury"
+      venue: "IEEE ICAPR 2017, Bangalore, India"
+      impact_factor: ""
+      url: "https://doi.org/10.1109/ICAPR.2017.8593082"
+      pdf: "papers/ICAPR2_2017.pdf"
+
+    - type: "conference"
+      year: 2015
+      title: "Contactless vision-based pulse rate detection of Infants Under Neurological Examinations"
+      authors: "**A. Sikdar**, S. K. Behera, D. P. Dogra, H. Bhaskar"
+      venue: "IEEE EMBC 2015, Milan, Italy — pp. 650–653"
+      impact_factor: ""
+      url: "https://doi.org/10.1109/EMBC.2015.7318446"
+      pdf: "papers/EMBC_2015.pdf"
+
+
+# ── TEACHING ──────────────────────────────────────────────────────────────────
+teaching:
+  items:
+    - year_label: "Edge Hill University"
+      title: "Emerging Technologies (CIS4518, Level 7)"
+      institution: "MSc Computing · MSc Artificial Intelligence · LLM"
+      description: >-
+        Developed and delivered lectures on Introduction to Computer Vision — covering
+        digital image representation, filtering, convolution, and AI ethics. Designed
+        Google Colab notebooks demonstrating NumPy, Matplotlib, and TensorFlow deep
+        learning frameworks for postgraduate students.
+      tag: "Module Development · Research-Led Teaching"
+
+    - year_label: "Edge Hill University"
+      title: "Advanced Robotics & Artificial Intelligence (CIS3137, Level 6)"
+      institution: "Substitute Lecturer"
+      description: >-
+        Led lecture delivery and served as substitute lecturer, independently developing
+        and delivering sessions on computer vision, image processing, and deep learning
+        for autonomous systems — aligning learning outcomes with cutting-edge research
+        and industry practice.
+      tag: "Curriculum Development"
+
+    - year_label: "Jadavpur University"
+      title: "Guest Faculty — Undergraduate Laboratory Courses"
+      institution: "B.E. Electronics & Telecommunication Engineering"
+      description: >-
+        Designed and supervised structured laboratory exercises in Digital Signal
+        Processing, Data Structures, and Microprocessor & Microcontroller Labs,
+        strengthening students' understanding of algorithms, signal processing,
+        and hardware interfacing.
+      tag: "Laboratory Teaching"
+
+    - year_label: "Research Supervision"
+      title: "Mentorship of M.Res & PhD Students"
+      institution: "Computer Vision · Deep Learning · AI Projects"
+      description: >-
+        Actively involved in supervision and mentorship at undergraduate and postgraduate
+        levels. Provided research guidance to students and research assistants, leading
+        to publications, conference presentations, and project-based outcomes in computer
+        vision and deep learning.
+      tag: "Research Mentorship"
+
+
+# ── SKILLS ────────────────────────────────────────────────────────────────────
+skills:
+  groups:
+    - name: "Programming"
+      tags: ["Python", "MATLAB", "PyQt5"]
+
+    - name: "Deep Learning Frameworks"
+      tags: ["PyTorch", "TensorFlow", "Keras"]
+
+    - name: "Scientific Computing"
+      tags: ["NumPy", "SciPy", "Scikit-learn", "Matplotlib"]
+
+    - name: "Research Areas"
+      tags: ["Person Re-ID", "Anomaly Detection", "3D Pose Estimation", "Object Detection"]
+
+    - name: "Professional Service"
+      tags: ["IEEE TIP Reviewer", "TCSVT Reviewer", "CVPR Reviewer", "BMVC Reviewer"]
+
+    - name: "Platforms & Tools"
+      tags: ["Google Colab", "GitHub", "Linux", "LaTeX"]
+
+
+# ── CONTACT ───────────────────────────────────────────────────────────────────
+# icon options: email | github | linkedin | orcid | scholar
+contact:
+  items:
+    - icon: "email"
+      label: "Personal Email"
+      value: "arindamsikdarju@gmail.com"
+      url: "mailto:arindamsikdarju@gmail.com"
+
+    - icon: "github"
+      label: "GitHub"
+      value: "github.com/Arindam-1991"
+      url: "https://github.com/Arindam-1991"
+
+    - icon: "linkedin"
+      label: "LinkedIn"
+      value: "dr-arindam-sikdar-b496bb205"
+      url: "https://www.linkedin.com/in/dr-arindam-sikdar-b496bb205"
+
+    - icon: "scholar"
+      label: "Google Scholar"
+      value: "View Publications & Citations"
+      url: "https://scholar.google.com/citations?user=8R1eDrIAAAAJ&hl=en"
