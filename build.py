@@ -119,13 +119,10 @@ def build_hero(h, news_items=None):
                         f'<span class="news-ext-icon" aria-label="opens in new tab"> ↗</span></a>')
             else:
                 main = text
+            type_html = f'<span class="news-type">{ntype}</span>' if ntype else ""
             cards_html += f"""
           <div class="news-card reveal{extra_cls}">
-            <div class="news-card-meta">
-              <span class="news-date">{date_str}</span>
-              <span class="news-type">{ntype}</span>
-            </div>
-            <p class="news-text">{main}</p>
+            <p class="news-row"><span class="news-date">{date_str}</span>{main}{type_html}</p>
           </div>"""
         more_btn = ""
         if len(news_items) > INIT_SHOW:
@@ -448,34 +445,35 @@ CSS = """
                color:var(--blue);line-height:1;margin-bottom:.25rem}
   .hero-hl-label{font-family:'DM Mono',monospace;font-size:.58rem;text-transform:uppercase;
                   letter-spacing:.09em;color:var(--muted);line-height:1.45}
-  /* Recent Updates — white card feed */
+  /* Recent Updates — shaded strip with compact bullet list */
   .hero-news{border-top:1px solid var(--border-light);padding:2rem 3rem;
-             position:relative;z-index:1}
+             background:var(--surface);position:relative;z-index:1}
   .hero-news-inner{max-width:1420px;margin:0 auto}
   .hero-news-heading{font-family:'DM Mono',monospace;font-size:.67rem;text-transform:uppercase;
-                     letter-spacing:.13em;color:var(--muted);margin-bottom:1.25rem}
+                     letter-spacing:.13em;color:var(--muted);margin-bottom:1rem}
   .news-feed{display:flex;flex-direction:column;background:#fff;border:1px solid var(--border);
-             border-radius:var(--radius);box-shadow:0 1px 6px rgba(0,0,0,.05);overflow:hidden}
-  .news-card{background:none;border:none;border-bottom:1px solid var(--border-light);
-             border-radius:0;padding:1rem 1.25rem;box-shadow:none;transition:background .15s}
-  .news-card:last-child{border-bottom:none}
+             border-radius:var(--radius);box-shadow:0 1px 4px rgba(0,0,0,.04);
+             padding:.2rem 0;overflow:hidden}
+  .news-card{background:none;border:none;border-radius:0;padding:.45rem 1.25rem .45rem 2.1rem;
+             box-shadow:none;transition:background .15s;position:relative}
+  .news-card::before{content:'·';position:absolute;left:.9rem;top:.46rem;
+                     font-size:1.1rem;color:var(--blue);line-height:1;font-weight:700}
   .news-card:hover{background:var(--surface)}
-  .news-card-meta{display:flex;align-items:center;gap:.55rem;margin-bottom:.55rem}
-  .news-date{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--muted);
-             letter-spacing:.06em;white-space:nowrap}
-  .news-type{font-family:'DM Mono',monospace;font-size:.63rem;color:var(--muted);
-             letter-spacing:.04em}
-  .news-type::before{content:'·';margin-right:.35rem;color:var(--border)}
-  .news-text{font-size:.9rem;color:var(--text);line-height:1.65;margin:0}
+  .news-row{font-size:.875rem;color:var(--text);line-height:1.6;margin:0}
+  .news-date{font-family:'DM Mono',monospace;font-size:.63rem;color:var(--muted);
+             letter-spacing:.06em;white-space:nowrap;margin-right:.5rem}
+  .news-type{font-family:'DM Mono',monospace;font-size:.61rem;color:var(--muted);
+             letter-spacing:.04em;margin-left:.45rem}
+  .news-type::before{content:'—';margin-right:.35rem;opacity:.4}
   .news-link{color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
              transition:color .15s,border-color .15s}
   .news-link:hover{color:var(--blue);border-bottom-color:var(--blue)}
-  .news-ext-icon{font-size:.78rem;color:var(--muted)}
+  .news-ext-icon{font-size:.75rem;color:var(--muted);margin-left:.2rem}
   .news-hidden{display:none!important}
-  .news-more-btn{display:none;margin-top:1.1rem;font-family:'DM Mono',monospace;
+  .news-more-btn{display:none;margin-top:.85rem;font-family:'DM Mono',monospace;
                  font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;
                  background:none;border:1px solid var(--border);border-radius:4px;
-                 color:var(--blue);padding:.45rem 1.1rem;cursor:pointer;
+                 color:var(--blue);padding:.4rem 1rem;cursor:pointer;
                  transition:border-color .18s,background .18s}
   .news-more-btn:hover{border-color:var(--blue);background:var(--blue-dim)}
   @media(prefers-reduced-motion:reduce){
