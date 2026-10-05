@@ -101,21 +101,23 @@ hero:
 news:
   - date: "Sep 2026"
     type: "Academic Service"
-    text: "Serving as Track Chair for IPTA 2026."
+    text: "Track Chair, IPTA 2026."
     url: ""
 
   - date: "Aug 2026"
     type: "Publication"
     text: >-
-      Our work on emerging trends in autonomous driving appeared in
-      IEEE Transactions on Intelligent Transportation Systems.
+      Publication in IEEE Transactions on Intelligent Transportation Systems:
+      From Virtual Environments to Real-World Trials: Emerging Trends in
+      Autonomous Driving.
     url: "https://doi.org/10.1109/TITS.2026.3679248"
 
   - date: "Apr 2025"
     type: "Publication"
     text: >-
-      Our work on high-order feature interaction for fine-grained visual
-      recognition appeared in the International Journal of Computer Vision.
+      Publication in International Journal of Computer Vision (IJCV):
+      Interweaving Insights: High-Order Feature Interaction for Fine-Grained
+      Visual Recognition.
     url: "https://doi.org/10.1007/s11263-024-02260-y"
 
 

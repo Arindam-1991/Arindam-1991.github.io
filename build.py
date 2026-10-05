@@ -141,10 +141,9 @@ def build_hero(h, news_items=None):
                         f'<span class="news-ext-icon" aria-label="opens in new tab"> ↗</span></a>')
             else:
                 main = text
-            type_html = f'<span class="news-type">{ntype}</span>' if ntype else ""
             cards_html += f"""
           <div class="news-card reveal{extra_cls}">
-            <p class="news-row"><span class="news-date">{date_str}</span>{main}{type_html}</p>
+            <p class="news-row"><span class="news-date">{date_str}</span>{main}</p>
           </div>"""
         more_btn = ""
         if len(news_items) > INIT_SHOW:
