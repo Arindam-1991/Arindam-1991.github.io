@@ -262,7 +262,11 @@
   @media(max-width:768px){
     nav{padding:0 1.2rem}.nav-links{display:none}
     .hero-inner{grid-template-columns:1fr;padding:5rem 1.5rem 2.5rem;gap:2rem}
-    .hero-right{order:2}.hero-portrait-area{order:1}
+    /* Flatten hero-right so portrait & highlights join the single-col grid directly */
+    .hero-right{display:contents}
+    .hero-portrait-area{order:-1;display:flex;flex-direction:column;align-items:center}
+    .hero-left{order:0}
+    .hero-highlights{order:1;width:min(240px,90%);margin:0 auto}
     .hero-news{padding:1.2rem 1.5rem}
     .hero-links{flex-wrap:wrap}
     section{padding:3.5rem 1.5rem}
