@@ -445,10 +445,15 @@ CSS = """
                color:var(--blue);line-height:1;margin-bottom:.25rem}
   .hero-hl-label{font-family:'DM Mono',monospace;font-size:.58rem;text-transform:uppercase;
                   letter-spacing:.09em;color:var(--muted);line-height:1.45}
-  /* Recent Updates — shaded strip with compact bullet list */
-  .hero-news{border-top:1px solid var(--border-light);padding:2rem 3rem;
-             background:var(--surface);position:relative;z-index:1}
-  .hero-news-inner{max-width:1420px;margin:0 auto}
+  /* Recent Updates — matches hero style, slightly deeper blue */
+  .hero-news{border-top:1px solid rgba(37,99,168,.18);padding:2rem 3rem;
+             background:linear-gradient(135deg,#d5e4f4 0%,#ccdaf0 40%,#d8e6f5 100%);
+             position:relative;z-index:1;overflow:hidden}
+  .hero-news::before{content:'';position:absolute;inset:0;
+    background-image:linear-gradient(rgba(37,99,168,.09) 1px,transparent 1px),
+                     linear-gradient(90deg,rgba(37,99,168,.09) 1px,transparent 1px);
+    background-size:40px 40px;pointer-events:none;z-index:0}
+  .hero-news-inner{max-width:1420px;margin:0 auto;position:relative;z-index:1}
   .hero-news-heading{font-family:'DM Mono',monospace;font-size:.67rem;text-transform:uppercase;
                      letter-spacing:.13em;color:var(--muted);margin-bottom:1rem}
   .news-feed{display:flex;flex-direction:column;background:#fff;border:1px solid var(--border);
