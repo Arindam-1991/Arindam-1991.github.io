@@ -61,7 +61,7 @@ hero:
     - num: "15+"
       label: "Peer-reviewed publications"
     - num: "2×"
-      label: "EPSRC-funded postdoc appointments"
+      label: "EPSRC-funded postdoc"
 
   # Link styles: cv (navy filled) | scholar (blue outlined) | outline (light)
   # icon options: cv | scholar | github | orcid | linkedin | email
