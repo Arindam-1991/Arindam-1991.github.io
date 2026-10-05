@@ -34,7 +34,13 @@ hero:
   photo: "images/profile.jpg"
   cv: "CV_Arindam_Sikdar.pdf"
 
-  # Compact academic biography paragraph (replaces descriptor, affiliations, topics)
+  # Research keyword pills shown between biography and links
+  topics:
+    - "Graph Learning"
+    - "Vision-Language Models"
+    - "Multimodal AI"
+
+  # Compact academic biography paragraph
   research_statement: >-
     I am a researcher in Computer Vision and Artificial Intelligence. My research
     focuses on data-efficient and structured visual learning, with interests in

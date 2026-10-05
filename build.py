@@ -65,6 +65,14 @@ def build_hero(h, news_items=None):
     photo_src  = h.get("photo", "img/profile.jpg")
     statement  = escape(h.get("research_statement", ""))
 
+    # Research keyword labels
+    topics_html = "".join(
+        f'<span class="hero-topic">{escape(t)}</span>'
+        for t in h.get("topics", [])
+    )
+    topics_block = (f'<div class="hero-topics">{topics_html}</div>'
+                    if topics_html else "")
+
     # Action buttons
     btn_cls = {"cv": "btn-cv", "scholar": "btn-scholar",
                "primary": "btn-cv", "outline": "btn-outline"}
@@ -131,6 +139,7 @@ def build_hero(h, news_items=None):
     <div class="hero-left">
       <h1 class="hero-name">{first_name}<br><em>{last_name}</em></h1>
       <p class="hero-statement reveal">{statement}</p>
+      {topics_block}
       <div class="hero-links reveal">{buttons.strip()}</div>
     </div>
 
@@ -382,7 +391,12 @@ CSS = """
              animation:fadeUp .6s ease both}
   .hero-name em{font-style:italic;color:var(--blue)}
   .hero-statement{font-size:.97rem;color:var(--text);line-height:1.85;max-width:640px;
-                  margin-bottom:1.8rem}
+                  margin-bottom:1.1rem}
+  .hero-topics{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.6rem}
+  .hero-topic{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.09em;
+              text-transform:uppercase;color:var(--muted);
+              border:1px solid rgba(37,99,168,.25);background:transparent;
+              padding:.2rem .65rem;border-radius:4px;pointer-events:none;user-select:none}
   .hero-links{display:flex;gap:.7rem;flex-wrap:wrap}
   .btn{display:inline-flex;align-items:center;gap:.4rem;padding:.5rem 1.1rem;border-radius:var(--radius);
        font-size:.76rem;font-weight:500;text-decoration:none;white-space:nowrap;
