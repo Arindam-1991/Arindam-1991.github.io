@@ -91,25 +91,22 @@ def build_hero(h, news_items=None):
                     f' rel="noopener noreferrer" aria-label="{lbl}">'
                     f'{svg} {lbl}</a>\n      ')
 
-    # Stats strip — compact horizontal row with vertical separators
-    _stats_parts = [
-        (f'<div class="hero-stat">'
-         f'<span class="hero-stat-num">{escape(str(hl["num"]))}</span>'
-         f'<span class="hero-stat-label">{escape(hl["label"])}</span>'
-         f'</div>')
-        for hl in h.get("highlights", [])
-    ]
-    stats_html = (
-        '<div class="hero-stats reveal">'
-        + '<div class="hero-stats-sep"></div>'.join(_stats_parts)
-        + '</div>'
-    ) if _stats_parts else ""
+    # White-card highlights (individual cards, grid layout)
+    hl_html = ""
+    for hl in h.get("highlights", []):
+        hl_html += f"""
+        <div class="hero-hl">
+          <div class="hero-hl-num">{escape(str(hl['num']))}</div>
+          <div class="hero-hl-label">{escape(hl['label'])}</div>
+        </div>"""
+    stats_html = (f'<div class="hero-highlights reveal">{hl_html}\n      </div>'
+                  if hl_html else "")
 
-    # Scalable chronological news feed (show first 5, rest hidden for JS toggle)
+    # Scalable news feed — white cards, show first 5, JS toggle for rest
     INIT_SHOW = 5
     news_html = ""
     if news_items:
-        rows_html = ""
+        cards_html = ""
         for i, n in enumerate(news_items):
             date_str  = escape(str(n.get("date", ""))).upper()
             ntype     = escape(n.get("type", ""))
@@ -122,13 +119,13 @@ def build_hero(h, news_items=None):
                         f'<span class="news-ext-icon" aria-label="opens in new tab"> ↗</span></a>')
             else:
                 main = text
-            rows_html += f"""
-          <div class="news-row reveal{extra_cls}">
-            <div class="news-date">{date_str}</div>
-            <div class="news-content">
-              <p class="news-text">{main}</p>
+            cards_html += f"""
+          <div class="news-card reveal{extra_cls}">
+            <div class="news-card-meta">
+              <span class="news-date">{date_str}</span>
               <span class="news-type">{ntype}</span>
             </div>
+            <p class="news-text">{main}</p>
           </div>"""
         more_btn = ""
         if len(news_items) > INIT_SHOW:
@@ -137,8 +134,8 @@ def build_hero(h, news_items=None):
         news_html = f"""
   <div class="hero-news">
     <div class="hero-news-inner">
-      <p class="hero-news-heading">News</p>
-      <div class="news-feed">{rows_html}
+      <p class="hero-news-heading">Recent Updates</p>
+      <div class="news-feed">{cards_html}
       </div>{more_btn}
     </div>
   </div>"""
@@ -441,35 +438,38 @@ CSS = """
                         color:var(--blue);line-height:1}
   .hero-photo-hint{font-family:'DM Mono',monospace;font-size:.65rem;text-align:center;
                    color:var(--muted);letter-spacing:.06em;line-height:1.6}
-  /* Academic stats strip */
-  .hero-stats{display:flex;align-items:stretch;gap:0;margin-top:.25rem;
-              border:1px solid var(--border-light);border-radius:var(--radius);
-              overflow:hidden;background:rgba(37,99,168,.03)}
-  .hero-stat{flex:1;text-align:center;padding:.65rem .5rem}
-  .hero-stats-sep{width:1px;background:var(--border-light);flex-shrink:0}
-  .hero-stat-num{display:block;font-family:'Cormorant Garamond',serif;font-size:1.35rem;
-                 font-weight:400;color:var(--blue);line-height:1.1;margin-bottom:.2rem}
-  .hero-stat-label{display:block;font-family:'DM Mono',monospace;font-size:.56rem;
-                   text-transform:uppercase;letter-spacing:.09em;color:var(--muted);line-height:1.4}
-  /* News feed */
+  /* Highlight white cards */
+  .hero-highlights{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.7rem}
+  .hero-hl{background:#fff;border:1px solid var(--border);border-radius:var(--radius);
+            padding:.9rem .7rem;text-align:center;
+            box-shadow:0 1px 6px rgba(0,0,0,.05);transition:border-color .18s,box-shadow .18s}
+  .hero-hl:hover{border-color:var(--blue);box-shadow:0 3px 12px rgba(37,99,168,.10)}
+  .hero-hl-num{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;
+               color:var(--blue);line-height:1;margin-bottom:.25rem}
+  .hero-hl-label{font-family:'DM Mono',monospace;font-size:.58rem;text-transform:uppercase;
+                  letter-spacing:.09em;color:var(--muted);line-height:1.45}
+  /* Recent Updates — white card feed */
   .hero-news{border-top:1px solid var(--border-light);padding:2rem 3rem;
              position:relative;z-index:1}
   .hero-news-inner{max-width:1420px;margin:0 auto}
   .hero-news-heading{font-family:'DM Mono',monospace;font-size:.67rem;text-transform:uppercase;
                      letter-spacing:.13em;color:var(--muted);margin-bottom:1.25rem}
-  .news-feed{display:flex;flex-direction:column}
-  .news-row{display:grid;grid-template-columns:100px 1fr;gap:1.5rem;align-items:baseline;
-             padding:.9rem 0;border-bottom:1px solid var(--border-light)}
-  .news-row:first-child{border-top:1px solid var(--border-light)}
-  .news-date{font-family:'DM Mono',monospace;font-size:.67rem;color:var(--muted);
-             letter-spacing:.06em;white-space:nowrap;padding-top:.05rem}
-  .news-content{display:flex;flex-direction:column;gap:.3rem}
-  .news-text{font-size:.92rem;color:var(--text);line-height:1.65;margin:0}
+  .news-feed{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:.85rem}
+  .news-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);
+             padding:1rem 1.25rem;box-shadow:0 1px 6px rgba(0,0,0,.05);
+             transition:border-color .18s,transform .18s,box-shadow .18s}
+  .news-card:hover{border-color:var(--blue);transform:translateY(-2px);box-shadow:0 4px 14px rgba(37,99,168,.09)}
+  .news-card-meta{display:flex;align-items:center;gap:.55rem;margin-bottom:.55rem}
+  .news-date{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--muted);
+             letter-spacing:.06em;white-space:nowrap}
+  .news-type{font-family:'DM Mono',monospace;font-size:.63rem;color:var(--muted);
+             letter-spacing:.04em}
+  .news-type::before{content:'·';margin-right:.35rem;color:var(--border)}
+  .news-text{font-size:.9rem;color:var(--text);line-height:1.65;margin:0}
   .news-link{color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
              transition:color .15s,border-color .15s}
   .news-link:hover{color:var(--blue);border-bottom-color:var(--blue)}
   .news-ext-icon{font-size:.78rem;color:var(--muted)}
-  .news-type{font-family:'DM Mono',monospace;font-size:.63rem;color:var(--muted);letter-spacing:.06em}
   .news-hidden{display:none!important}
   .news-more-btn{display:none;margin-top:1.1rem;font-family:'DM Mono',monospace;
                  font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;
@@ -611,8 +611,7 @@ CSS = """
     .hero-inner{grid-template-columns:1fr;padding:5rem 1.5rem 2.5rem;gap:2rem}
     .hero-right{order:2}.hero-portrait-area{order:1}
     .hero-news{padding:1.2rem 1.5rem}
-    .news-row{grid-template-columns:1fr;gap:.2rem;padding:.75rem 0}
-    .news-date{font-size:.62rem}
+    .news-feed{grid-template-columns:1fr}
     .hero-links{flex-wrap:wrap}
     section{padding:3.5rem 1.5rem}
     .research-grid{grid-template-columns:1fr}
@@ -648,7 +647,7 @@ JS = """
     var btn = document.getElementById('news-more-btn');
     if (!btn) return;
     btn.style.display = 'block';
-    var extras = Array.from(document.querySelectorAll('.news-hidden'));
+    var extras = Array.from(document.querySelectorAll('.news-card.news-hidden'));
     btn.addEventListener('click', function(){
       var open = btn.getAttribute('aria-expanded') === 'true';
       extras.forEach(function(r){

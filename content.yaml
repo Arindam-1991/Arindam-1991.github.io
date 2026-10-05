@@ -61,8 +61,6 @@ hero:
       label: "Peer-reviewed publications"
     - num: "2×"
       label: "EPSRC-funded postdoc appointments"
-    - num: "IPTA 2026"
-      label: "Track Chair"
 
   # Link styles: cv (navy filled) | scholar (blue outlined) | outline (light)
   # icon options: cv | scholar | github | orcid | linkedin | email
