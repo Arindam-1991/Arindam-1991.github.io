@@ -49,8 +49,8 @@ hero:
     - "Ph.D., Jadavpur University"
 
   # Understated research topic pills beneath the statement
+  # ("Computer Vision" omitted — already communicated by the descriptor above)
   topics:
-    - "Computer Vision"
     - "Graph Learning"
     - "Vision-Language Models"
     - "Multimodal AI"
@@ -89,22 +89,36 @@ hero:
       icon: "linkedin"
 
 
-# ── RECENT UPDATES (shown in the hero / first screen) ─────────────────────────
-# Keep to 3 items max. tag options: PUBLICATION | SERVICE | RESEARCH | AWARD | TALK
+# ── NEWS ──────────────────────────────────────────────────────────────────────
+# Add new entries here — newest first is recommended (build.py sorts by date).
+# The homepage shows the 5 most recent; older items appear under "Show more".
+#
+# date:  "Mon YYYY"  e.g. "Sep 2026"
+# type:  Publication | Conference | Academic Service | Talk | Award | Research
+#        Tutorial | Code & Data | Appointment | Research Visit  (any string works)
+# text:  One sentence. Plain, precise, no self-promotion.
+# url:   DOI or official link if applicable; leave "" otherwise.
+#
+# To add a new item, just append a block — nothing else needs editing.
 news:
-  - year: "2026"
-    tag: "PUBLICATION"
-    text: >-
-      Paper published in IEEE Transactions on Intelligent Transportation Systems
-      on emerging trends in autonomous driving.
-  - year: "2026"
-    tag: "SERVICE"
+  - date: "Sep 2026"
+    type: "Academic Service"
     text: "Serving as Track Chair for IPTA 2026."
-  - year: "2025"
-    tag: "PUBLICATION"
+    url: ""
+
+  - date: "Aug 2026"
+    type: "Publication"
     text: >-
-      Interweaving Insights: High-Order Feature Interaction for Fine-Grained
-      Visual Recognition published in IJCV (IF 9.3).
+      Our work on emerging trends in autonomous driving appeared in
+      IEEE Transactions on Intelligent Transportation Systems.
+    url: "https://doi.org/10.1109/TITS.2026.3679248"
+
+  - date: "Apr 2025"
+    type: "Publication"
+    text: >-
+      Our work on high-order feature interaction for fine-grained visual
+      recognition appeared in the International Journal of Computer Vision.
+    url: "https://doi.org/10.1007/s11263-024-02260-y"
 
 
 # ── ABOUT — Research Interests ────────────────────────────────────────────────
