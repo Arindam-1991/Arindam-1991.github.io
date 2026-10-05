@@ -463,7 +463,9 @@ skills:
 
 
 # ── CONTACT ───────────────────────────────────────────────────────────────────
-# icon options: email | github | linkedin | orcid | scholar
+# Keep only direct contact methods here (email, phone, LinkedIn, etc.).
+# GitHub, Google Scholar, ORCID belong in hero.links, not here.
+# icon options: email | linkedin | orcid | scholar | github
 contact:
   items:
     - icon: "email"
@@ -471,17 +473,7 @@ contact:
       value: "arindamsikdarju@gmail.com"
       url: "mailto:arindamsikdarju@gmail.com"
 
-    - icon: "github"
-      label: "GitHub"
-      value: "github.com/Arindam-1991"
-      url: "https://github.com/Arindam-1991"
-
     - icon: "linkedin"
       label: "LinkedIn"
       value: "dr-arindam-sikdar-b496bb205"
       url: "https://www.linkedin.com/in/dr-arindam-sikdar-b496bb205"
-
-    - icon: "scholar"
-      label: "Google Scholar"
-      value: "View Publications & Citations"
-      url: "https://scholar.google.com/citations?user=8R1eDrIAAAAJ&hl=en"
