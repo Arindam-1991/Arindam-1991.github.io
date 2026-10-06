@@ -353,16 +353,20 @@ def build_skills(s):
 </section>"""
 
 def build_contact(c):
+    intro_html = ""
+    if c.get("intro"):
+        intro_html = f'\n  <p class="contact-intro reveal">{escape(c["intro"])}</p>'
     items = ""
     for it in c.get("items", []):
         ico = contact_icon_html(it.get("icon", "email"))
         items += f"""
-    <a href="{it['url']}" class="contact-item reveal" target="_blank">
+    <a href="{it['url']}" class="contact-item reveal" target="_blank" rel="noopener noreferrer">
       <div class="contact-icon">{ico}</div>
       <div class="contact-text">
         <div class="contact-label">{escape(it['label'])}</div>
         <div class="contact-value">{escape(it['value'])}</div>
       </div>
+      <span class="contact-arrow">↗</span>
     </a>"""
     return f"""
 <section id="contact">
@@ -370,7 +374,7 @@ def build_contact(c):
     <span class="section-num">06</span>
     <h2 class="section-title">Get in Touch</h2>
     <div class="section-line"></div>
-  </div>
+  </div>{intro_html}
   <div class="contact-grid">{items}
   </div>
 </section>"""
@@ -601,15 +605,19 @@ CSS = """
   .skill-tag:hover{background:var(--blue-dim);border-color:var(--blue);color:var(--blue)}
 
   /* CONTACT */
-  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;max-width:800px}
-  .contact-item{display:flex;gap:1rem;align-items:flex-start;background:#fff;border:1px solid var(--border);
-                 border-radius:var(--radius);padding:1.2rem;text-decoration:none;
-                 box-shadow:0 1px 4px rgba(0,0,0,.04);transition:border-color .18s,transform .18s,box-shadow .18s}
+  .contact-intro{font-size:.95rem;color:var(--muted);line-height:1.75;max-width:560px;margin-bottom:1.8rem}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;max-width:640px}
+  .contact-item{display:flex;gap:1rem;align-items:center;background:#fff;border:1px solid var(--border);
+                 border-radius:var(--radius);padding:1.2rem 1.4rem;text-decoration:none;
+                 box-shadow:0 1px 4px rgba(0,0,0,.04);transition:border-color .18s,transform .18s,box-shadow .18s;position:relative}
   .contact-item:hover{border-color:var(--blue);transform:translateY(-2px);box-shadow:0 4px 14px rgba(37,99,168,.10)}
-  .contact-icon{width:36px;height:36px;border-radius:8px;background:var(--blue-dim);color:var(--blue);
-                 display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;font-weight:600}
-  .contact-label{font-family:'DM Mono',monospace;font-size:.63rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
-  .contact-value{font-size:.87rem;color:var(--text);margin-top:.15rem;word-break:break-all}
+  .contact-icon{width:40px;height:40px;border-radius:10px;background:var(--blue-dim);color:var(--blue);
+                 display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .contact-text{flex:1;min-width:0}
+  .contact-label{font-family:'DM Mono',monospace;font-size:.62rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+  .contact-value{font-size:.9rem;font-weight:500;color:var(--navy);margin-top:.2rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .contact-arrow{font-size:.8rem;color:var(--muted);margin-left:.5rem;flex-shrink:0;transition:color .18s}
+  .contact-item:hover .contact-arrow{color:var(--blue)}
 
   /* FOOTER */
   footer{text-align:center;padding:1.8rem;background:var(--navy);

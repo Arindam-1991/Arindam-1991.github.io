@@ -468,13 +468,16 @@ skills:
 # GitHub, Google Scholar, ORCID belong in hero.links, not here.
 # icon options: email | linkedin | orcid | scholar | github
 contact:
+  intro: >-
+    Open to academic collaborations, visiting positions, and research discussions.
+    Feel free to reach out by email or connect on LinkedIn.
   items:
     - icon: "email"
-      label: "Personal Email"
+      label: "Email"
       value: "arindamsikdarju@gmail.com"
       url: "mailto:arindamsikdarju@gmail.com"
 
     - icon: "linkedin"
       label: "LinkedIn"
-      value: "dr-arindam-sikdar-b496bb205"
+      value: "Arindam Sikdar"
       url: "https://www.linkedin.com/in/arindam-sikdar-b496bb205"
