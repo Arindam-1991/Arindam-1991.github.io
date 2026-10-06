@@ -82,7 +82,7 @@ hero:
       style: "outline"
       icon: "orcid"
     - label: "LinkedIn"
-      url: "https://www.linkedin.com/in/dr-arindam-sikdar-b496bb205"
+      url: "https://www.linkedin.com/in/arindam-sikdar-b496bb205"
       style: "outline"
       icon: "linkedin"
 
@@ -477,4 +477,4 @@ contact:
     - icon: "linkedin"
       label: "LinkedIn"
       value: "dr-arindam-sikdar-b496bb205"
-      url: "https://www.linkedin.com/in/dr-arindam-sikdar-b496bb205"
+      url: "https://www.linkedin.com/in/arindam-sikdar-b496bb205"
